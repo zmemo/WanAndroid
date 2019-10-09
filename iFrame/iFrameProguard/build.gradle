@@ -1,0 +1,30 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion Config.compileSdkVersion
+    defaultConfig {
+        minSdkVersion Config.minSdkVersion
+        targetSdkVersion Config.targetSdkVersion
+        versionCode Config.versionCode
+        versionName Config.versionName
+    }
+
+    buildTypes {
+        debug {
+            consumerProguardFiles file('.').listFiles(new FilenameFilter() {
+                @Override
+                boolean accept(File file, String s) {
+                    return s.endsWith('.pro')
+                }
+            })
+        }
+        release {
+            consumerProguardFiles file('.').listFiles(new FilenameFilter() {
+                @Override
+                boolean accept(File file, String s) {
+                    return s.endsWith('.pro')
+                }
+            })
+        }
+    }
+}

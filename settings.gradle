@@ -1,0 +1,19 @@
+rootProject.name = 'WanAndroid'
+
+include ':app',
+
+        ':business:moduleHome',
+        ':business:moduleProject',
+        ':business:moduleSystem',
+        ':business:moduleBlog',
+        ':business:moduleMine',
+
+        ':base:moduleUi',
+        ':base:moduleBase',
+
+        ':iFrame:iFrameProguard',
+        ':iFrame:iFrameWidget',
+        ':iFrame:iFrameTool',
+        ':iFrame:iFrameBasic'
+
+

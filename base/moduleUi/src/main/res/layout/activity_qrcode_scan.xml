@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".qrcode.QrcodeScanActivity">
+	
+	<com.memo.widget.titleview.TitleView
+		android:id="@+id/mTitleView"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:title_right_text="相册"
+		app:title_title_text="二维码扫描" />
+	
+	<cn.bingoogolapple.qrcode.zxing.ZXingView
+		android:id="@+id/mZXingView"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:qrcv_animTime="800"
+		app:qrcv_borderColor="@android:color/white"
+		app:qrcv_borderSize="@dimen/dp0_5"
+		app:qrcv_cornerColor="@android:color/white"
+		app:qrcv_cornerLength="@dimen/dp20"
+		app:qrcv_cornerSize="@dimen/dp3"
+		app:qrcv_maskColor="#33000000"
+		app:qrcv_rectWidth="@dimen/dp200"
+		app:qrcv_scanLineColor="@android:color/white"
+		app:qrcv_scanLineSize="@dimen/dp0_5"
+		app:qrcv_verticalBias="0.5" />
+
+</LinearLayout>
