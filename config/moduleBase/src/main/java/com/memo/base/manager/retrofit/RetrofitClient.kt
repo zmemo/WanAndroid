@@ -1,7 +1,11 @@
 package com.memo.base.manager.retrofit
 
+import com.franmontiel.persistentcookiejar.PersistentCookieJar
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.memo.base.config.config.Config
 import com.memo.base.config.constant.Constant
+import com.memo.tool.app.BaseApp
 import com.memo.tool.helper.GsonHelper
 import com.memo.tool.http.interceptor.HttpLogInterceptor
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager
@@ -18,15 +22,16 @@ import java.util.concurrent.TimeUnit
  * @author zhou
  * @date 2019-01-29 18:09
  */
-class RetrofitManager private constructor() {
+class RetrofitClient private constructor() {
 
-    //var api:ApiService
+    private var mRetrofit: Retrofit
 
     companion object {
-        private val instance: RetrofitManager by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
-            RetrofitManager()
+        private val instance: RetrofitClient by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+            RetrofitClient()
         }
-        //val mApi = instance.api
+
+        fun <T> create(service: Class<T>): T = instance.mRetrofit.create(service)
     }
 
     init {
@@ -36,15 +41,15 @@ class RetrofitManager private constructor() {
             .readTimeout(10, TimeUnit.SECONDS)
             .connectTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(10, TimeUnit.SECONDS)
+            .cookieJar(PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(BaseApp.app)))
             .build()
 
-        val mRetrofit = Retrofit.Builder()
+        mRetrofit = Retrofit.Builder()
             .baseUrl(Constant.Api.BASE_URL)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(GsonHelper.getGson()))
             .client(mOkHttpClient)
             .build()
 
-        //api = mRetrofit.create(ApiService::class.java)
     }
 }

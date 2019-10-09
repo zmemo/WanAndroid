@@ -7,6 +7,7 @@ import com.google.gson.JsonParseException
 import com.memo.base.config.config.Config
 import com.memo.tool.dir.LocalDir
 import com.memo.tool.helper.IOHelper
+import com.memo.tool.helper.toast
 import org.json.JSONException
 import retrofit2.HttpException
 import java.io.File
@@ -25,35 +26,35 @@ import java.net.UnknownHostException
  */
 object ExceptionHandler {
 
-    fun handleException(exception: Throwable): ApiException {
+    fun handleException(exception: Throwable) {
         //错误日志打印
         LogUtils.eTag("HTTP ERROR", exception.toString())
         //在这里把错误日志存储到本地
         saveErrorLog2Local(exception)
-        return when (exception) {
+        when (exception) {
             is ApiException -> {
                 // 服务器返回的错误
-                exception
+                toast(exception.message)
             }
             is JsonParseException,
             is JSONException,
             is ParseException -> {
                 // 解析错误
-                ApiException(ExceptionCode.ParseErrorCode, "数据解析失败")
+                toast("数据解析失败")
             }
             is HttpException,
             is ConnectException,
             is SocketException -> {
                 // 连接错误
-                ApiException(ExceptionCode.ConnectErrorCode, "无法连接服务器")
+                toast("无法连接服务器")
             }
             is UnknownHostException -> {
                 // 网络错误
-                ApiException(ExceptionCode.NetworkErrorCode, "网络异常")
+                toast("网络异常")
             }
             else -> {
                 // 未知错误
-                ApiException(ExceptionCode.UnknownErrorCode, "发生未知错误")
+                toast("发生未知错误")
             }
         }
     }
@@ -71,8 +72,8 @@ object ExceptionHandler {
 
         //获取详细错误信息
         var info: String
-        var sw:StringWriter?  = null
-        var pw:PrintWriter? = null
+        var sw: StringWriter? = null
+        var pw: PrintWriter? = null
         try {
             sw = StringWriter()
             pw = PrintWriter(sw)
@@ -80,9 +81,9 @@ object ExceptionHandler {
             pw.flush()
             sw.flush()
             info = sw.toString()
-        }catch (e:Exception){
+        } catch (e: Exception) {
             info = exception.toString()
-        }finally {
+        } finally {
             IOHelper.close(sw)
             IOHelper.close(pw)
         }

@@ -2,6 +2,7 @@ package com.memo.tool.ext
 
 import android.annotation.SuppressLint
 import com.blankj.utilcode.constant.TimeConstants
+import com.blankj.utilcode.util.TimeUtils
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,7 +19,7 @@ import java.util.*
  *  @param format 时间的格式，默认是按照yyyy-MM-dd HH:mm:ss来转换
  */
 fun String.toMills(format: String = "yyyy-MM-dd HH:mm:ss"): Long =
-    SimpleDateFormat(format, Locale.getDefault()).parse(this).time
+    TimeUtils.string2Millis(this, format)
 
 /**
  * Long类型时间戳转为字符串的日期格式

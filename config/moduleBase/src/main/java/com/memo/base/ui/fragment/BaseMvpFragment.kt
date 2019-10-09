@@ -1,5 +1,7 @@
 package com.memo.base.ui.fragment
 
+import android.app.Activity
+import androidx.lifecycle.LifecycleOwner
 import com.memo.base.ui.mvp.IPresenter
 import com.memo.base.ui.mvp.IView
 
@@ -21,7 +23,20 @@ abstract class BaseMvpFragment<in V : IView, P : IPresenter<V>> : BaseFragment()
     override fun baseInitialize() {
         super.baseInitialize()
         mPresenter = buildPresenter()
-        mPresenter.attachView(this as V, this)
+        mPresenter.attachView(this as V)
     }
+
+    /*** 回调上下文 ***/
+    override fun context(): Activity = mActivity
+
+    /*** 回调生命周期控制 ***/
+    override fun lifecycleOwner(): LifecycleOwner = mLifecycleOwner
+
+    /*** 显示加载框 ***/
+    override fun showLoading(tip: String) = mLoadDialog.show(tip)
+
+    /*** 隐藏加载框 ***/
+    override fun hideLoading() = mLoadDialog.dismiss()
+
 
 }

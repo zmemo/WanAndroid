@@ -42,14 +42,15 @@ class DepConfig {
     static retrofitConverter = "com.squareup.retrofit2:converter-scalars:2.6.0"
     static retrofitRxJavaAdapter = "com.squareup.retrofit2:adapter-rxjava2:2.6.0"
     static retrofitUrlManager = "me.jessyan:retrofit-url-manager:1.4.0"
+    static autoDispose = "com.uber.autodispose:autodispose-android:1.4.0"
+    static autoDisposeArch = "com.uber.autodispose:autodispose-android-archcomponents:1.4.0"
     static glide = "com.github.bumptech.glide:glide:4.9.0"
     static arouter = "com.alibaba:arouter-api:1.5.0"
     static mmkv = "com.tencent:mmkv:1.0.22"
     static preview = "com.ycjiang:ImagePreview:2.2.5"
     static stickyHeader = "com.oushangfeng:PinnedSectionItemDecoration:1.3.2"
     static luBan = "top.zibin:Luban:1.1.8"
-    static autoDispose = "com.uber.autodispose:autodispose-android:1.4.0"
-    static autoDisposeArch = "com.uber.autodispose:autodispose-android-archcomponents:1.4.0"
+    static cookie = "com.github.franmontiel:PersistentCookieJar:v1.0.1"
 
     // 插件
     static doraemonKitRelease = "com.didichuxing.doraemonkit:doraemonkit-no-op:1.2.1"

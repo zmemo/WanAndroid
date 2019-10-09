@@ -222,14 +222,14 @@ fun View.toBitmap(): Bitmap {
                 totalHeight += this.getChildAt(i).height
             }
             val screenshot =
-                Bitmap.createBitmap(this.getWidth(), totalHeight, Bitmap.Config.ARGB_4444)
+                Bitmap.createBitmap(this.getWidth(), totalHeight, Bitmap.Config.RGB_565)
             val canvas = Canvas(screenshot)
             this.draw(canvas)
             screenshot
         }
         else -> {
             val screenshot =
-                Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_4444)
+                Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.RGB_565)
             val canvas = Canvas(screenshot)
             if (background != null) {
                 background.setBounds(0, 0, width, measuredHeight)
@@ -312,7 +312,7 @@ fun View.enableAfter(owner: LifecycleOwner, second: Long) {
  */
 @SuppressLint("SetTextI18n", "CheckResult")
 fun TextView.resendVerificationCodeAfter(owner: LifecycleOwner, second: Long = 60) {
-    val observable = Observable.interval(0, 1, TimeUnit.SECONDS)
+    Observable.interval(0, 1, TimeUnit.SECONDS)
         .take(second + 1)
         .map { second - it }
         .observeOn(AndroidSchedulers.mainThread())

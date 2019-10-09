@@ -54,6 +54,7 @@ dependencies {
     api DepConfig.preview
     api DepConfig.stickyHeader
     api DepConfig.luBan
+    api DepConfig.cookie
 
 
     // 插件
