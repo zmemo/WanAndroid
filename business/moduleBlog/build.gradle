@@ -40,7 +40,12 @@ kapt {
 }
 
 dependencies {
+    // 调试
+    testImplementation DepConfig.junit
+    androidTestImplementation DepConfig.testJunit
+    androidTestImplementation DepConfig.testEspresso
+
     kapt DepConfig.arouterCompiler
-    api project(path: ':base:moduleBase')
+    api project(path: ':config:moduleBase')
 }
 

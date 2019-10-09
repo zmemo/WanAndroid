@@ -89,10 +89,7 @@ kapt {
 }
 
 dependencies {
-    testImplementation DepConfig.junit
-    androidTestImplementation DepConfig.testJunit
-    androidTestImplementation DepConfig.testEspresso
     kapt DepConfig.arouterCompiler
 
-    if (!ModuleConfig.isModuleUiRunAlone) implementation project(path: ':base:moduleUi')
+    if (!ModuleConfig.isModuleUiRunAlone) implementation project(path: ':config:moduleUi')
 }

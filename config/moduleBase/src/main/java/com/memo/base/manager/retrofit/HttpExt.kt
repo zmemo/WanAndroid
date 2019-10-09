@@ -1,7 +1,7 @@
 package com.memo.base.manager.retrofit
 
-import com.memo.base.api.BaseResponse
 import com.memo.base.api.ApiException
+import com.memo.base.api.BaseResponse
 import io.reactivex.Observable
 
 /**

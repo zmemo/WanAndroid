@@ -1,4 +1,6 @@
-if (ModuleConfig.isModuleUiRunAlone) {
+def runAlone = ModuleConfig.isModuleOtherRunAlone.booleanValue()
+
+if (runAlone) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
@@ -10,7 +12,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion Config.compileSdkVersion
     defaultConfig {
-        if (ModuleConfig.isModuleUiRunAlone) {
+        if (runAlone) {
             applicationId Config.applicationId + project.name
         }
         minSdkVersion Config.minSdkVersion
@@ -22,7 +24,7 @@ android {
     }
     sourceSets {
         main {
-            if (ModuleConfig.isModuleUiRunAlone) {
+            if (runAlone) {
                 manifest.srcFile 'src/main/manifest/application/AndroidManifest.xml'
             } else {
                 manifest.srcFile 'src/main/manifest/module/AndroidManifest.xml'
@@ -38,7 +40,12 @@ kapt {
 }
 
 dependencies {
+    // 调试
+    testImplementation DepConfig.junit
+    androidTestImplementation DepConfig.testJunit
+    androidTestImplementation DepConfig.testEspresso
+
     kapt DepConfig.arouterCompiler
-    api project(path: ':base:moduleBase')
+    api project(path: ':config:moduleBase')
 }
 

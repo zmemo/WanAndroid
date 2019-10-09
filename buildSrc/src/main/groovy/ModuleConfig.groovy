@@ -4,6 +4,8 @@ class ModuleConfig {
 
     static isModuleUiRunAlone = false
 
+    static isModuleOtherRunAlone = false
+
     static isModuleHomeRunAlone = false
 
     static isModuleProjectRunAlone = false

@@ -7,9 +7,10 @@ include ':app',
         ':business:moduleSystem',
         ':business:moduleBlog',
         ':business:moduleMine',
+        ':business:moduleOther',
 
-        ':base:moduleUi',
-        ':base:moduleBase',
+        ':config:moduleUi',
+        ':config:moduleBase',
 
         ':iFrame:iFrameProguard',
         ':iFrame:iFrameWidget',
