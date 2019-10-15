@@ -15,6 +15,16 @@ import com.memo.tool.adapter.BaseFragmentPagerAdapter
 import com.memo.tool.ext.startActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
+/**
+ * title:登录界面
+ * describe:
+ *
+ * @author memo
+ * @date 2019-10-15 20:54
+ * @email zhou_android@163.com
+ *
+ * Talk is cheap, Show me the code.
+ */
 class LoginActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
 
     /*** Tab 标题 登陆 注册 ***/

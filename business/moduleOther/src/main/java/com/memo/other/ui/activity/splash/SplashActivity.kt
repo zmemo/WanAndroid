@@ -2,6 +2,7 @@ package com.memo.other.ui.activity.splash
 
 import android.animation.Animator
 import com.memo.base.manager.data.DataManager
+import com.memo.base.manager.init.InitManager
 import com.memo.base.ui.activity.BaseActivity
 import com.memo.other.R
 import com.memo.other.ui.activity.login.LoginActivity
@@ -28,6 +29,9 @@ class SplashActivity : BaseActivity() {
 
     /*** 进行初始化操作 ***/
     override fun initialize() {
+        // 进行初始化操作
+        InitManager.get().initInSplash()
+        // 动画监听
         mLottie.addAnimatorListener(object : SimpleAnimatorListener() {
             override fun onAnimationEnd(animation: Animator?, isReverse: Boolean) {
                 // 需要进行判断是否cookie存在
