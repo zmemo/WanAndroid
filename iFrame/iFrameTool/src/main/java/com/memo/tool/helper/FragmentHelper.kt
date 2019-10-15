@@ -3,6 +3,7 @@ package com.memo.tool.helper
 import android.annotation.SuppressLint
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
 import java.util.*
 
 /**
@@ -51,6 +52,8 @@ class FragmentHelper constructor(containerResId: Int, fragmentManager: FragmentM
         val beginTransaction = mFragmentManager.beginTransaction()
         for ((index, fragment) in mStack.withIndex()) {
             beginTransaction.add(mContainerResId, fragment)
+            //让Fragment的生命周期运行到onResume之前 配合BaseFragment进行懒加载
+            beginTransaction.setMaxLifecycle(fragment, Lifecycle.State.RESUMED)
             if (0 != index) {
                 beginTransaction.hide(fragment)
             } else {

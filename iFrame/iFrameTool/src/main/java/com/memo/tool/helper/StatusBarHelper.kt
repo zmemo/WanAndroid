@@ -14,6 +14,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.IntRange
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.drawerlayout.widget.DrawerLayout
+import com.blankj.utilcode.util.RomUtils
 import com.memo.tool.R
 
 /**
@@ -572,14 +573,16 @@ object StatusBarHelper {
      */
     @SuppressLint("PrivateApi")
     private fun setMIUIStatusBarDarkIcon(activity: Activity, darkIcon: Boolean) {
-        val clazz = activity.window.javaClass
         try {
-            val layoutParams = Class.forName("android.view.MiuiWindowManager\$LayoutParams")
-            val field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE")
-            val darkModeFlag = field.getInt(layoutParams)
-            val extraFlagField =
-                clazz.getMethod("setExtraFlags", Int::class.javaPrimitiveType, Int::class.javaPrimitiveType)
-            extraFlagField.invoke(activity.window, if (darkIcon) darkModeFlag else 0, darkModeFlag)
+            if (RomUtils.isXiaomi()) {
+                val clazz = activity.window.javaClass
+                val layoutParams = Class.forName("android.view.MiuiWindowManager\$LayoutParams")
+                val field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE")
+                val darkModeFlag = field.getInt(layoutParams)
+                val extraFlagField =
+                    clazz.getMethod("setExtraFlags", Int::class.javaPrimitiveType, Int::class.javaPrimitiveType)
+                extraFlagField.invoke(activity.window, if (darkIcon) darkModeFlag else 0, darkModeFlag)
+            }
         } catch (e: Exception) {
             // e.printStackTrace();
         }
@@ -590,20 +593,22 @@ object StatusBarHelper {
      */
     private fun setMeizuStatusBarDarkIcon(activity: Activity, darkIcon: Boolean) {
         try {
-            val lp = activity.window.attributes
-            val darkFlag = WindowManager.LayoutParams::class.java.getDeclaredField("MEIZU_FLAG_DARK_STATUS_BAR_ICON")
-            val meizuFlags = WindowManager.LayoutParams::class.java.getDeclaredField("meizuFlags")
-            darkFlag.isAccessible = true
-            meizuFlags.isAccessible = true
-            val bit = darkFlag.getInt(null)
-            var value = meizuFlags.getInt(lp)
-            if (darkIcon) {
-                value = value or bit
-            } else {
-                value = value and bit.inv()
+            if (RomUtils.isMeizu()) {
+                val lp = activity.window.attributes
+                val darkFlag = WindowManager.LayoutParams::class.java.getDeclaredField("MEIZU_FLAG_DARK_STATUS_BAR_ICON")
+                val meizuFlags = WindowManager.LayoutParams::class.java.getDeclaredField("meizuFlags")
+                darkFlag.isAccessible = true
+                meizuFlags.isAccessible = true
+                val bit = darkFlag.getInt(null)
+                var value = meizuFlags.getInt(lp)
+                if (darkIcon) {
+                    value = value or bit
+                } else {
+                    value = value and bit.inv()
+                }
+                meizuFlags.setInt(lp, value)
+                activity.window.attributes = lp
             }
-            meizuFlags.setInt(lp, value)
-            activity.window.attributes = lp
         } catch (e: Exception) {
             e.printStackTrace()
         }

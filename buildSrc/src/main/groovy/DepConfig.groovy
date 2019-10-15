@@ -28,6 +28,7 @@ class DepConfig {
     static loadSir = "com.kingja.loadsir:loadsir:1.3.6"
     static agentWeb = "com.just.agentweb:agentweb:4.0.3-beta"
     static smartRefreshLayout = "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0"
+    static tabLayout = "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar"
 
     // 工具
     static kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.50"
@@ -50,7 +51,8 @@ class DepConfig {
     static preview = "com.ycjiang:ImagePreview:2.2.5"
     static stickyHeader = "com.oushangfeng:PinnedSectionItemDecoration:1.3.2"
     static luBan = "top.zibin:Luban:1.1.8"
-    static cookie = "com.github.franmontiel:PersistentCookieJar:v1.0.1"
+    static lottie = "com.airbnb.android:lottie:3.1.0"
+
 
     // 插件
     static doraemonKitRelease = "com.didichuxing.doraemonkit:doraemonkit-no-op:1.2.1"

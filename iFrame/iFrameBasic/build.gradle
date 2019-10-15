@@ -32,6 +32,7 @@ dependencies {
     api DepConfig.uCrop
     api DepConfig.agentWeb
     api DepConfig.smartRefreshLayout
+    api DepConfig.tabLayout
 
     // 工具
     api DepConfig.kotlin
@@ -54,7 +55,7 @@ dependencies {
     api DepConfig.preview
     api DepConfig.stickyHeader
     api DepConfig.luBan
-    api DepConfig.cookie
+    api DepConfig.lottie
 
 
     // 插件

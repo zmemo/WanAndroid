@@ -1,6 +1,5 @@
 package com.memo.tool.helper
 
-import android.view.Gravity
 import com.blankj.utilcode.util.ToastUtils
 import com.memo.tool.R
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -21,15 +20,6 @@ fun toast(message: Any?) {
     message?.let {
         if (it.toString().isNotEmpty()) {
             ToastUtils.setGravity(-1, -1, -1)
-            ToastUtils.showCustomShort(R.layout.layout_toast).mTvMessage.text = it.toString()
-        }
-    }
-}
-
-fun toastCenter(message: Any?) {
-    message?.let {
-        if (it.toString().isNotEmpty()) {
-            ToastUtils.setGravity(Gravity.CENTER, 0, 0)
             ToastUtils.showCustomShort(R.layout.layout_toast).mTvMessage.text = it.toString()
         }
     }

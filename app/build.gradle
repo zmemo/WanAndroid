@@ -91,7 +91,7 @@ kapt {
 dependencies {
     kapt DepConfig.arouterCompiler
 
-    if (!ModuleConfig.isModuleUiRunAlone) implementation project(path: ':config:moduleUi')
+    if (!ModuleConfig.isModuleUiRunAlone) implementation project(path: ':common:moduleUi')
     if (!ModuleConfig.isModuleOtherRunAlone) implementation project(path: ':business:moduleOther')
     if (!ModuleConfig.isModuleHomeRunAlone) implementation project(path: ':business:moduleHome')
     if (!ModuleConfig.isModuleProjectRunAlone) implementation project(path: ':business:moduleProject')

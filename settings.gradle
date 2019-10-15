@@ -8,9 +8,9 @@ include ':app',
         ':business:moduleBlog',
         ':business:moduleMine',
         ':business:moduleOther',
-
-        ':config:moduleUi',
-        ':config:moduleBase',
+        ':business:moduleBase',
+        
+        ':common:moduleUi',
 
         ':iFrame:iFrameProguard',
         ':iFrame:iFrameWidget',

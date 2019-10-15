@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.login.LoginActivity">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="lottie_cloud.json"
+        app:lottie_loop="true"
+        app:lottie_repeatMode="restart"
+        tools:background="#97D2F7" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp100"
+        android:orientation="vertical">
+
+        <com.flyco.tablayout.SegmentTabLayout
+            android:id="@+id/mTabLayout"
+            android:layout_width="@dimen/dp200"
+            android:layout_height="@dimen/dp45"
+            android:layout_marginBottom="@dimen/dp20"
+            app:tl_bar_color="#BBFFFFFF"
+            app:tl_indicator_anim_enable="true"
+            app:tl_indicator_color="#FFFFFF"
+            app:tl_indicator_margin_bottom="@dimen/dp2"
+            app:tl_indicator_margin_left="@dimen/dp2"
+            app:tl_indicator_margin_right="@dimen/dp2"
+            app:tl_indicator_margin_top="@dimen/dp2"
+            app:tl_textBold="BOTH"
+            app:tl_textSelectColor="@color/color_333333"
+            app:tl_textUnselectColor="@color/color_666666" />
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/dp330"
+            android:layout_height="@dimen/dp400"
+            app:cardBackgroundColor="#88FFFFFF"
+            app:cardCornerRadius="@dimen/dp15"
+            app:cardElevation="0dp">
+
+            <com.memo.widget.viewpager.ScrollViewPager
+                android:id="@+id/mViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
+</FrameLayout>

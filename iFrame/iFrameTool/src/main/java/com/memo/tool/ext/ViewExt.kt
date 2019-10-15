@@ -7,11 +7,13 @@ import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
+import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.LogUtils
 import com.memo.tool.R
 import com.memo.tool.helper.ClickHelper
@@ -334,6 +336,15 @@ fun TextView.resendVerificationCodeAfter(owner: LifecycleOwner, second: Long = 6
         })
 }
 
+/**
+ * 用一个控件填充满状态栏
+ */
+fun View.fillStatusBar() {
+    val height = BarUtils.getStatusBarHeight()
+    val params = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, height)
+    layoutParams = params
+}
+
 // ---------------------------------------- TextView ----------------------------------------
 
 /**
@@ -347,5 +358,9 @@ fun TextView.setValue(value: CharSequence?) {
 /**
  * 获取EditText的文本
  */
-val EditText.value: CharSequence get() = text.toString()
+val EditText.value: String get() = text.toString().trim()
+
+
+
+
 

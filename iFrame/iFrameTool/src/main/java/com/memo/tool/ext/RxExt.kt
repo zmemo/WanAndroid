@@ -2,6 +2,7 @@ package com.memo.tool.ext
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import com.blankj.utilcode.util.LogUtils
 import com.uber.autodispose.AutoDispose
 import com.uber.autodispose.ObservableSubscribeProxy
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
@@ -74,5 +75,5 @@ fun doInBackground(
 ) {
     Observable.just(doInBackground())
         .io2MainLifecycle(lifecycleOwner)
-        .subscribe()
+        .subscribe { LogUtils.iTag("doInBackground", "后台任务执行完成") }
 }
