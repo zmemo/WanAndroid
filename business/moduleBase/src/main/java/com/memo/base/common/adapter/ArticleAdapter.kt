@@ -1,9 +1,9 @@
 package com.memo.base.common.adapter
 
 import android.graphics.Color
-import android.text.Html
 import com.memo.base.R
 import com.memo.base.entity.remote.ArticleInfo
+import com.memo.iframe.tools.ext.fromHtml
 import com.memo.tool.adapter.recyclerview.BaseRecyclerAdapter
 import com.memo.tool.adapter.recyclerview.ViewHolder
 import com.memo.tool.ext.color
@@ -33,7 +33,7 @@ class ArticleAdapter : BaseRecyclerAdapter<ArticleInfo>(R.layout.item_article) {
             }}"
         )
             .setText(R.id.mTvTitle, item.title)
-            .setText(R.id.mTvDesc, Html.fromHtml(item.desc))
+            .setText(R.id.mTvDesc, item.desc.fromHtml())
             .setText(R.id.mTvChapter, "${item.superChapterName} · ${item.chapterName}")
             .setText(R.id.mTvTime, item.niceDate)
             .setGone(R.id.mIvPic, showPic)

@@ -5,7 +5,6 @@ import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.memo.base.common.adapter.ArticleAdapter
 import com.memo.base.entity.remote.ArticleInfo
-import com.memo.base.manager.load.LoadHelper
 import com.memo.base.ui.fragment.BaseMvpFragment
 import com.memo.project.R
 import com.memo.tool.helper.finish
@@ -46,31 +45,18 @@ class ProjectItemFragment : BaseMvpFragment<ProjectItemView, ProjectItemPresente
     /*** 绑定布局 ***/
     override fun bindLayoutResId(): Int = R.layout.fragment_project_item
 
-    /*** 在视图加载完毕的时候初始化 ***/
-    override fun initialize() {
-        initData()
-        initView()
-        initListener()
-    }
-
-    /*** 在界面可见的时候进行初始化 ***/
-    override fun lazyInitialize() {
-        start()
-    }
-
-    private fun initData() {
+    override fun initData() {
         cid = arguments?.getInt("cid", cid) ?: cid
     }
 
-    private fun initView() {
-        mLoadService = LoadHelper.register(mRootView) { mPresenter.getArticles(cid, page) }
+    override fun initView() {
         mRvList.run {
             layoutManager = LinearLayoutManager(mActivity)
             adapter = mAdapter
         }
     }
 
-    private fun initListener() {
+    override fun initListener() {
         mRefreshLayout.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
             override fun onLoadMore(refreshLayout: RefreshLayout) {
                 page++
@@ -84,13 +70,17 @@ class ProjectItemFragment : BaseMvpFragment<ProjectItemView, ProjectItemPresente
         })
     }
 
-    private fun start() {
+    override fun start() {
         mPresenter.getArticles(cid, page)
     }
 
     override fun getArticlesSuccess(response: ArrayList<ArticleInfo>) {
         mRefreshLayout.finish(response.isEmpty())
-        mAdapter.setNewData(response)
+        if (page == 0) {
+            mAdapter.setNewData(response)
+        } else {
+            mAdapter.addData(response)
+        }
     }
 
     override fun getArticlesFailure() {

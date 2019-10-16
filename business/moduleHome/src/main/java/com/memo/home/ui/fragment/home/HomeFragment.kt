@@ -4,13 +4,11 @@ package com.memo.home.ui.fragment.home
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.BarUtils
-import com.blankj.utilcode.util.LogUtils
 import com.google.android.material.appbar.AppBarLayout
 import com.memo.base.common.adapter.ArticleAdapter
 import com.memo.base.entity.remote.ArticleInfo
 import com.memo.base.entity.remote.HomeData
 import com.memo.base.manager.banner.BannerImageLoader
-import com.memo.base.manager.load.LoadHelper
 import com.memo.base.manager.router.RouterManager
 import com.memo.base.manager.router.RouterPath
 import com.memo.base.ui.fragment.BaseMvpFragment
@@ -50,21 +48,11 @@ class HomeFragment : BaseMvpFragment<HomeView, HomePresenter>(), HomeView {
     /*** 绑定布局 ***/
     override fun bindLayoutResId(): Int = R.layout.fragment_home
 
-    /*** 在视图加载完毕的时候初始化 ***/
-    override fun initialize() {
-        initView()
-        initListener()
-    }
+    override fun initData() {}
 
-    /*** 在界面可见的时候进行初始化 ***/
-    override fun lazyInitialize() {
-        start()
-    }
-
-    private fun initView() {
+    override fun initView() {
         // 状态栏字体黑暗模式
         StatusBarHelper.setStatusTextDarkMode(mActivity)
-        mLoadService = LoadHelper.register(mRootView) { mPresenter.getHomeData() }
         // 设置ToolBar距顶
         mToolBar.setPadding(0, BarUtils.getStatusBarHeight(), 0, 0)
         // 设置Banner图片加载
@@ -76,7 +64,7 @@ class HomeFragment : BaseMvpFragment<HomeView, HomePresenter>(), HomeView {
         }
     }
 
-    private fun initListener() {
+    override fun initListener() {
         // 设置AppBar的透明度
         mAppBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBar, offset ->
             mToolBar.alpha = abs(offset).toFloat() / appBar.totalScrollRange
@@ -101,13 +89,11 @@ class HomeFragment : BaseMvpFragment<HomeView, HomePresenter>(), HomeView {
         }
     }
 
-    private fun start() {
+    override fun start() {
         mPresenter.getHomeData()
     }
 
     override fun getHomeDataSuccess(response: HomeData) {
-        mLoadService?.showSuccess()
-        LogUtils.iTag("aaa", "success", mLoadService == null)
         mRefreshLayout.finish(response.articles.isEmpty())
         // 轮播图
         if (response.banners.isNotEmpty()) {

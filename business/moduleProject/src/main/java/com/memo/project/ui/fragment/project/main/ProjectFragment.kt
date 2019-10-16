@@ -3,7 +3,6 @@ package com.memo.project.ui.fragment.project.main
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.memo.base.entity.remote.ProjectTree
-import com.memo.base.manager.load.LoadHelper
 import com.memo.base.manager.router.RouterPath
 import com.memo.base.ui.fragment.BaseMvpFragment
 import com.memo.iframe.tools.ext.fromHtml
@@ -34,27 +33,16 @@ class ProjectFragment : BaseMvpFragment<ProjectView, ProjectPresenter>(), Projec
     /*** 绑定布局 ***/
     override fun bindLayoutResId(): Int = R.layout.fragment_project
 
-    /*** 在视图加载完毕的时候初始化 ***/
-    override fun initialize() {
-        initView()
-    }
+    override fun initData() {}
 
-    /*** 在界面可见的时候进行初始化 ***/
-    override fun lazyInitialize() {
-        start()
-    }
-
-    private fun initView() {
+    override fun initView() {
         // 填充状态栏
         mRootView.paddingStatusBar()
-
-        mLoadService = LoadHelper.register(mRootView) {
-            mPresenter.getProjectTree()
-        }
     }
 
+    override fun initListener() {}
 
-    private fun start() {
+    override fun start() {
         mPresenter.getProjectTree()
     }
 

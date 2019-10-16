@@ -3,6 +3,7 @@ package com.memo.base.ui.fragment
 import android.app.Activity
 import androidx.lifecycle.LifecycleOwner
 import com.kingja.loadsir.core.LoadService
+import com.memo.base.manager.load.LoadHelper
 import com.memo.base.ui.mvp.IPresenter
 import com.memo.base.ui.mvp.IView
 
@@ -16,7 +17,7 @@ import com.memo.base.ui.mvp.IView
 @Suppress("UNCHECKED_CAST")
 abstract class BaseMvpFragment<in V : IView, P : IPresenter<V>> : BaseFragment(), IView {
 
-    protected var mLoadService: LoadService<*>? = null
+    protected lateinit var mLoadService: LoadService<*>
 
     protected lateinit var mPresenter: P
 
@@ -27,13 +28,32 @@ abstract class BaseMvpFragment<in V : IView, P : IPresenter<V>> : BaseFragment()
         super.baseInitialize()
         mPresenter = buildPresenter()
         mPresenter.attachView(this as V)
+        mLoadService = LoadHelper.register(mRootView) { start() }
     }
+
+    override fun initialize() {
+        initData()
+        initView()
+        initListener()
+    }
+
+    override fun lazyInitialize() {
+        start()
+    }
+
+    abstract fun initData()
+
+    abstract fun initView()
+
+    abstract fun initListener()
+
+    abstract fun start()
 
     /*** 回调上下文 ***/
     override fun context(): Activity = mActivity
 
     /*** 加载状态 ***/
-    override fun loadService(): LoadService<*>? = mLoadService
+    override fun loadService(): LoadService<*> = mLoadService
 
     /*** 回调生命周期控制 ***/
     override fun lifecycleOwner(): LifecycleOwner = mLifecycleOwner

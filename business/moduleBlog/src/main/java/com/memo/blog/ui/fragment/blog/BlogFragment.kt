@@ -18,19 +18,23 @@ import com.memo.blog.R
  */
 @Route(path = RouterPath.Blog.BlogFragment)
 class BlogFragment : BaseMvpFragment<BlogView, BlogPresenter>(), BlogView {
+
     /*** 绑定Presenter ***/
     override fun buildPresenter(): BlogPresenter = BlogPresenter()
 
     /*** 绑定布局 ***/
     override fun bindLayoutResId(): Int = R.layout.fragment_blog
 
-    /*** 在视图加载完毕的时候初始化 ***/
-    override fun initialize() {
+    override fun initData() {
     }
 
-    /*** 在界面可见的时候进行初始化 ***/
-    override fun lazyInitialize() {
+    override fun initView() {
     }
 
+    override fun initListener() {
+    }
+
+    override fun start() {
+    }
 
 }

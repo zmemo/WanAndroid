@@ -18,20 +18,23 @@ import com.memo.mine.R
  */
 @Route(path = RouterPath.Mine.MineFragment)
 class MineFragment : BaseMvpFragment<MineView, MinePresenter>(), MineView {
+
     /*** 绑定Presenter ***/
     override fun buildPresenter(): MinePresenter = MinePresenter()
-
 
     /*** 绑定布局 ***/
     override fun bindLayoutResId(): Int = R.layout.fragment_mine
 
-    /*** 在视图加载完毕的时候初始化 ***/
-    override fun initialize() {
+    override fun initData() {
     }
 
-    /*** 在界面可见的时候进行初始化 ***/
-    override fun lazyInitialize() {
+    override fun initView() {
     }
 
+    override fun initListener() {
+    }
+
+    override fun start() {
+    }
 
 }

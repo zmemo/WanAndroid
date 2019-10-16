@@ -46,12 +46,12 @@ fun <T> Observable<T>.execute(
     this.io2MainLifecycle(view.lifecycleOwner())
         .subscribe({
             onSuccess(it)
-            view.loadService()?.showSuccess()
+            view.loadService().showSuccess()
             view.hideLoading()
         }, {
             ExceptionHandler.handleException(it)
             onError()
-            if (isFirstLoad) view.loadService()?.showCallback(StateError::class.java)
+            if (isFirstLoad) view.loadService().showCallback(StateError::class.java)
             view.hideLoading()
         })
 }

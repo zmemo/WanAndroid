@@ -45,14 +45,8 @@ class LoginActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
     /*** 绑定布局id ***/
     override fun bindLayoutResId(): Int = R.layout.activity_login
 
-    /*** 进行初始化操作 ***/
-    override fun initialize() {
-        initData()
-        initView()
-        initListener()
-    }
 
-    private fun initData() {
+    override fun initData() {
         // 清除用户Cookie
         DataManager.get().removeCookie()
         // 关闭其他界面
@@ -60,13 +54,13 @@ class LoginActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
 
     }
 
-    private fun initView() {
+    override fun initView() {
         mTabLayout.setTabData(mTitles)
         mAdapter.setData(mFragments)
         mViewPager.adapter = mAdapter
     }
 
-    private fun initListener() {
+    override fun initListener() {
         mTabLayout.setOnTabSelectListener(object : OnTabSelectListener {
             override fun onTabReselect(position: Int) {}
             override fun onTabSelect(position: Int) {
@@ -74,6 +68,8 @@ class LoginActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
             }
         })
     }
+
+    override fun start() {}
 
     /**
      * 登陆

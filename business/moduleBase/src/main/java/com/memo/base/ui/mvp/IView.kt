@@ -16,7 +16,7 @@ interface IView {
 
     fun context(): Activity
 
-    fun loadService(): LoadService<*>?
+    fun loadService(): LoadService<*>
 
     fun lifecycleOwner(): LifecycleOwner
 
