@@ -52,6 +52,7 @@ class DepConfig {
     static stickyHeader = "com.oushangfeng:PinnedSectionItemDecoration:1.3.2"
     static luBan = "top.zibin:Luban:1.1.8"
     static lottie = "com.airbnb.android:lottie:3.1.0"
+    static banner = "com.youth.banner:banner:1.4.10"
 
 
     // 插件

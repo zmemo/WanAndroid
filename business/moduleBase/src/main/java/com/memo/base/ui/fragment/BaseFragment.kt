@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
@@ -42,12 +43,14 @@ abstract class BaseFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(bindLayoutResId(), container, false)
+        val mContainer = FrameLayout(mActivity)
+        mRootView = inflater.inflate(bindLayoutResId(), container, false)
+        mContainer.addView(mRootView)
+        return mContainer
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mRootView = view
         isPrepare = true
         baseInitialize()
         onVisibleToUser()
@@ -63,10 +66,10 @@ abstract class BaseFragment : Fragment() {
     }
 
     override fun onResume() {
+        super.onResume()
         if (isPrepare) {
             onVisibleToUser()
         }
-        super.onResume()
     }
 
 

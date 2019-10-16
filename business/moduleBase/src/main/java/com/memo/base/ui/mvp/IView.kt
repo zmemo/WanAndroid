@@ -2,6 +2,7 @@ package com.memo.base.ui.mvp
 
 import android.app.Activity
 import androidx.lifecycle.LifecycleOwner
+import com.kingja.loadsir.core.LoadService
 
 
 /**
@@ -14,6 +15,8 @@ import androidx.lifecycle.LifecycleOwner
 interface IView {
 
     fun context(): Activity
+
+    fun loadService(): LoadService<*>?
 
     fun lifecycleOwner(): LifecycleOwner
 

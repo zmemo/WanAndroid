@@ -1,6 +1,9 @@
 package com.memo.home.ui.fragment.home
 
+import com.memo.base.entity.remote.ArticleInfo
+import com.memo.base.entity.remote.HomeData
 import com.memo.base.ui.mvp.IView
+import java.util.*
 
 /**
  * title:
@@ -12,4 +15,8 @@ import com.memo.base.ui.mvp.IView
  *
  * Talk is cheap, Show me the code.
  */
-interface HomeView : IView
+interface HomeView : IView {
+    fun getHomeDataSuccess(response: HomeData)
+    fun getArticleSuccess(response: ArrayList<ArticleInfo>)
+    fun getDataFailure()
+}

@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.project.ProjectFragment">
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.project.main.ProjectFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/mTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:tl_indicator_color="@color/color_999999"
+        app:tl_indicator_style="TRIANGLE"
+        app:tl_textBold="BOTH"
+        app:tl_textSelectColor="@color/color_333333"
+        app:tl_textUnselectColor="@color/color_999999" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/mViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:overScrollMode="never" />
 
-</FrameLayout>
+
+</LinearLayout>

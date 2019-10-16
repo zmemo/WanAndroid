@@ -1,5 +1,6 @@
 package com.memo.iframe.tools.ext
 
+import android.text.Html
 import com.blankj.utilcode.util.EncryptUtils
 import java.util.*
 
@@ -54,6 +55,16 @@ fun String.md5(): String = EncryptUtils.encryptMD5ToString(this)
  * 曾经出现过后台返回"Null" 然后判断isNullOrEmpty()通过 显示在界面上的时候悲剧了
  */
 fun String?.isNull() = isNullOrEmpty() || this!!.trim().toLowerCase(Locale.getDefault()) == "null"
+
+/**
+ * Html格式化
+ */
+fun String.fromHtml() =
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+        Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY).toString()
+    } else {
+        Html.fromHtml(this).toString()
+    }
 
 /**
  * 最后一个字符

@@ -1,5 +1,6 @@
-package com.memo.project.ui.fragment.project
+package com.memo.project.ui.fragment.project.main
 
+import com.memo.base.manager.retrofit.execute
 import com.memo.base.ui.mvp.BasePresenter
 
 /**
@@ -17,5 +18,13 @@ class ProjectPresenter : BasePresenter<ProjectModel, ProjectView>() {
      * 绑定Model
      */
     override fun buildModel(): ProjectModel = ProjectModel()
+
+    fun getProjectTree() {
+        mModel.getProjectTree()
+            .execute(mView, isFirstLoad, {
+                isFirstLoad = false
+                mView.getProjectTreeSuccess(it)
+            })
+    }
 
 }

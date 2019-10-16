@@ -3,6 +3,7 @@ package com.memo.base.manager.retrofit
 import com.memo.base.api.ApiException
 import com.memo.base.api.BaseResponse
 import com.memo.base.api.ExceptionHandler
+import com.memo.base.manager.load.StateError
 import com.memo.base.ui.mvp.IView
 import com.memo.tool.ext.io2MainLifecycle
 import io.reactivex.Observable
@@ -34,6 +35,27 @@ fun <T> Observable<T>.execute(
             view.hideLoading()
         })
 }
+
+
+fun <T> Observable<T>.execute(
+    view: IView,
+    isFirstLoad: Boolean,
+    onSuccess: (response: T) -> Unit,
+    onError: () -> Unit = {}
+) {
+    this.io2MainLifecycle(view.lifecycleOwner())
+        .subscribe({
+            onSuccess(it)
+            view.loadService()?.showSuccess()
+            view.hideLoading()
+        }, {
+            ExceptionHandler.handleException(it)
+            onError()
+            if (isFirstLoad) view.loadService()?.showCallback(StateError::class.java)
+            view.hideLoading()
+        })
+}
+
 
 /**
  * 数据源转化

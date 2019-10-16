@@ -1,6 +1,6 @@
 package com.memo.tool.helper
 
-import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.ActivityUtils
 
 /**
  * title:点击工具类 防止过快点击
@@ -64,7 +64,7 @@ object ClickHelper {
             lastExitTime = now
         } else {
             toastCancel()
-            AppUtils.exitApp()
+            ActivityUtils.finishAllActivities(true)
         }
     }
 }

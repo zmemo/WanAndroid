@@ -1,5 +1,5 @@
 class Config {
-    static applicationId = "com.memo.android"
+    static applicationId = "com.memo.wan"
     static appName = "iFrame"
     static compileSdkVersion = 29
     static minSdkVersion = 19

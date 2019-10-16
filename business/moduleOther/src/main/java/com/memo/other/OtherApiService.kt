@@ -18,9 +18,9 @@ import retrofit2.http.Query
  * Talk is cheap, Show me the code.
  */
 
-val mApiService = RetrofitManager.create(ApiService::class.java)
+val mApiService = RetrofitManager.create(OtherApiService::class.java)
 
-interface ApiService {
+interface OtherApiService {
 
     /**
      * 登陆

@@ -19,12 +19,12 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : BaseActivity() {
 
-    private val mFragmentHelper = FragmentHelper(R.id.mFlContainer, supportFragmentManager)
-    private val mHomeFragment = RouterManager.get().getHomeFragment()
-    private val mProjectFragment = RouterManager.get().getProjectFragment()
-    private val mBlogFragment = RouterManager.get().getBlogFragment()
-    private val mSystemFragment = RouterManager.get().getSystemFragment()
-    private val mMineFragment = RouterManager.get().getMineFragment()
+    private val mFragmentHelper by lazy { FragmentHelper(R.id.mFlContainer, supportFragmentManager) }
+    private val mHomeFragment by lazy { RouterManager.get().getHomeFragment() }
+    private val mProjectFragment by lazy { RouterManager.get().getProjectFragment() }
+    private val mBlogFragment by lazy { RouterManager.get().getBlogFragment() }
+    private val mSystemFragment by lazy { RouterManager.get().getSystemFragment() }
+    private val mMineFragment by lazy { RouterManager.get().getMineFragment() }
 
     override fun transparentStatusBar(): Boolean = true
 
@@ -36,7 +36,7 @@ class MainActivity : BaseActivity() {
         mFragmentHelper.add(mHomeFragment, mProjectFragment, mBlogFragment, mSystemFragment, mMineFragment)
             .show()
         mBottomView.setOnItemChangeListener { menuItem, position ->
-            mFragmentHelper.change(position)
+            mFragmentHelper.show(position)
         }
     }
 

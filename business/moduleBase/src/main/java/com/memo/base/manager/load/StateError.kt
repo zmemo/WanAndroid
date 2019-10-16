@@ -14,5 +14,5 @@ import com.memo.base.R
  * Talk is cheap, Show me the code.
  */
 class StateError :Callback(){
-    override fun onCreateView(): Int  = R.layout.layout_state_loading
+    override fun onCreateView(): Int = R.layout.layout_state_error
 }

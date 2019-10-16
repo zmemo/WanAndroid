@@ -72,16 +72,25 @@ class InitManager {
         }
     }
 
-    fun initInSplash(){
-        if(!isInitInSplash){
+    fun initInSplash() {
+        if (!isInitInSplash) {
             //初始化刷新框架
+            SmartRefreshLayout.setDefaultRefreshInitializer { _, refreshLayout ->
+                refreshLayout
+                    .setEnableAutoLoadMore(false)
+                    .setEnableOverScrollBounce(true)
+                    .setEnableOverScrollDrag(true)
+                    .setEnableLoadMoreWhenContentNotFull(false)
+            }
             SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, _ ->
-                ClassicsHeader(context)
+
+                val classicsHeader = ClassicsHeader(context)
+                classicsHeader
             }
             SmartRefreshLayout.setDefaultRefreshFooterCreator { context, _ ->
                 BallPulseFooter(context)
-                    .setNormalColor(ContextCompat.getColor(context, R.color.color_666666))
-                    .setAnimatingColor(ContextCompat.getColor(context, R.color.color_666666))
+                    .setNormalColor(ContextCompat.getColor(context, R.color.color_main))
+                    .setAnimatingColor(ContextCompat.getColor(context, R.color.color_main))
             }
 
             LoadSir.beginBuilder()

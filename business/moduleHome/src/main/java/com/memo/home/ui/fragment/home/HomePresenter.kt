@@ -1,5 +1,6 @@
 package com.memo.home.ui.fragment.home
 
+import com.memo.base.manager.retrofit.execute
 import com.memo.base.ui.mvp.BasePresenter
 
 /**
@@ -17,4 +18,23 @@ class HomePresenter : BasePresenter<HomeModel, HomeView>() {
      * 绑定Model
      */
     override fun buildModel(): HomeModel = HomeModel()
+
+    fun getHomeData() {
+        mModel.getHomeData()
+            .execute(mView, isFirstLoad, {
+                isFirstLoad = false
+                mView.getHomeDataSuccess(it)
+            }, {
+                mView.getDataFailure()
+            })
+    }
+
+    fun getArticleData(page: Int) {
+        mModel.getArticleData(page)
+            .execute(mView, {
+                mView.getArticleSuccess(it)
+            }, {
+                mView.getDataFailure()
+            })
+    }
 }
