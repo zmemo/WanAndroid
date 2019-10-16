@@ -42,6 +42,6 @@ abstract class BaseMultiAdapter<T : MultiItemEntity>
     /**
      * 返回MultiProvider集合
      */
-    abstract fun bindMultiType(): List<BaseMultiProvider<T>>
+    abstract fun bindMultiType(): ArrayList<BaseMultiProvider<T>>
 
 }

@@ -55,6 +55,7 @@ class LoginActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
     }
 
     override fun initView() {
+        mLoadService.showSuccess()
         mTabLayout.setTabData(mTitles)
         mAdapter.setData(mFragments)
         mViewPager.adapter = mAdapter

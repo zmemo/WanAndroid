@@ -2,7 +2,7 @@ package com.memo.project.api
 
 import com.memo.base.api.BaseResponse
 import com.memo.base.entity.remote.ArticleData
-import com.memo.base.entity.remote.ProjectTree
+import com.memo.base.entity.remote.ArticleTree
 import com.memo.base.manager.retrofit.RetrofitManager
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -27,7 +27,7 @@ interface ProjectApiService {
      * 获取项目树类型
      */
     @GET(value = "project/tree/json")
-    fun getProjectTree(): Observable<BaseResponse<ArrayList<ProjectTree>>>
+    fun getProjectTree(): Observable<BaseResponse<ArrayList<ArticleTree>>>
 
     /**
      * 获取具体项目文章列表

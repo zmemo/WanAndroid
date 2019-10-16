@@ -1,5 +1,6 @@
-package com.memo.blog.ui.fragment.blog
+package com.memo.blog.ui.fragment.blog.main
 
+import com.memo.base.manager.retrofit.execute
 import com.memo.base.ui.mvp.BasePresenter
 
 /**
@@ -17,4 +18,12 @@ class BlogPresenter : BasePresenter<BlogModel, BlogView>() {
      * 绑定Model
      */
     override fun buildModel(): BlogModel = BlogModel()
+
+    fun getBlogTree(){
+        mModel.getBlogData()
+            .execute(mView,isFirstLoad,{
+                isFirstLoad = false
+                mView.getBlogTreeSuccess(it)
+            })
+    }
 }

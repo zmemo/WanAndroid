@@ -2,7 +2,7 @@ package com.memo.project.ui.fragment.project.main
 
 
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.memo.base.entity.remote.ProjectTree
+import com.memo.base.entity.remote.ArticleTree
 import com.memo.base.manager.router.RouterPath
 import com.memo.base.ui.fragment.BaseMvpFragment
 import com.memo.iframe.tools.ext.fromHtml
@@ -46,7 +46,7 @@ class ProjectFragment : BaseMvpFragment<ProjectView, ProjectPresenter>(), Projec
         mPresenter.getProjectTree()
     }
 
-    override fun getProjectTreeSuccess(response: ArrayList<ProjectTree>) {
+    override fun getProjectTreeSuccess(response: ArrayList<ArticleTree>) {
         val titles = ArrayList<String>()
         val fragments = arrayListOf<ProjectItemFragment>()
         response.forEach {

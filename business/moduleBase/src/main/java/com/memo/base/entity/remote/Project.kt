@@ -11,7 +11,7 @@ package com.memo.base.entity.remote
  * Talk is cheap, Show me the code.
  */
 
-data class ProjectTree(
+data class ArticleTree(
     val children: ArrayList<Int> = arrayListOf(),
     val courseId: Int = 0, // 13
     val id: Int = 0, // 294

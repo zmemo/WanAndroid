@@ -3,7 +3,7 @@ package com.memo.mine.ui.fragment.mine
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.memo.base.manager.router.RouterPath
-import com.memo.base.ui.fragment.BaseMvpFragment
+import com.memo.base.ui.fragment.BaseFragment
 import com.memo.mine.R
 
 /**
@@ -17,24 +17,14 @@ import com.memo.mine.R
  * Talk is cheap, Show me the code.
  */
 @Route(path = RouterPath.Mine.MineFragment)
-class MineFragment : BaseMvpFragment<MineView, MinePresenter>(), MineView {
-
-    /*** 绑定Presenter ***/
-    override fun buildPresenter(): MinePresenter = MinePresenter()
-
+class MineFragment : BaseFragment(){
+    
     /*** 绑定布局 ***/
     override fun bindLayoutResId(): Int = R.layout.fragment_mine
 
-    override fun initData() {
+    override fun initialize() {
     }
 
-    override fun initView() {
+    override fun lazyInitialize() {
     }
-
-    override fun initListener() {
-    }
-
-    override fun start() {
-    }
-
 }

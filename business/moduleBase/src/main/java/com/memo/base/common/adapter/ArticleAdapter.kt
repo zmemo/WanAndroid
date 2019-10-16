@@ -32,7 +32,7 @@ class ArticleAdapter : BaseRecyclerAdapter<ArticleInfo>(R.layout.item_article) {
                 item.author
             }}"
         )
-            .setText(R.id.mTvTitle, item.title)
+            .setText(R.id.mTvTitle, item.title.fromHtml())
             .setText(R.id.mTvDesc, item.desc.fromHtml())
             .setText(R.id.mTvChapter, "${item.superChapterName} · ${item.chapterName}")
             .setText(R.id.mTvTime, item.niceDate)

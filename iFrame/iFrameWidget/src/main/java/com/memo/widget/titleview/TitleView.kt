@@ -247,10 +247,8 @@ class TitleView(context: Context, attrs: AttributeSet?) : FrameLayout(context, a
         //设置背景颜色
         setBackgroundColor(background)
         //是否显示边框阴影
-        if (shadowShown) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                this.outlineProvider = ViewOutlineProvider.BOUNDS
-            }
+        if (shadowShown && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            this.outlineProvider = ViewOutlineProvider.BOUNDS
             ViewCompat.setElevation(this, mElevation)
             clipToPadding = false
         }

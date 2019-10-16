@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.system.SystemFragment">
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.system.main.SystemFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.flyco.tablayout.SegmentTabLayout
+        android:id="@+id/mTabLayout"
+        android:layout_width="@dimen/dp200"
+        android:layout_height="@dimen/dp30"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp10"
+        app:tl_indicator_anim_enable="true"
+        app:tl_indicator_color="#33000000"
+        app:tl_indicator_margin_bottom="@dimen/dp2"
+        app:tl_indicator_margin_left="@dimen/dp2"
+        app:tl_indicator_margin_right="@dimen/dp2"
+        app:tl_indicator_margin_top="@dimen/dp2"
+        app:tl_textBold="BOTH"
+        app:tl_textSelectColor="@color/color_333333"
+        app:tl_textUnselectColor="@color/color_999999" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0_5"
+        android:background="@color/color_EEEEEE" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/mViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:overScrollMode="never" />
 
-</FrameLayout>
+</LinearLayout>

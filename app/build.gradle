@@ -34,7 +34,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             android.applicationVariants.all { variant ->
                 variant.outputs.all {
-                    def time = new Date().format("MM-dd HH:mm", TimeZone.getDefault())
+                    def time = new Date().format("MM-dd_HH-mm", TimeZone.getDefault())
                     outputFileName = "debug-v${variant.versionName}-${time}.apk"
                 }
             }
@@ -47,7 +47,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             android.applicationVariants.all { variant ->
                 variant.outputs.all {
-                    def time = new Date().format("MM-dd HH:mm", TimeZone.getDefault())
+                    def time = new Date().format("MM-dd_HH-mm", TimeZone.getDefault())
                     outputFileName = "release-v${variant.versionName}-${time}.apk"
                 }
             }

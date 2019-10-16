@@ -13,6 +13,6 @@
         app:lottie_autoPlay="true"
         app:lottie_fileName="lottie_splash.json"
         app:lottie_loop="false"
-        app:lottie_speed="1.5" />
+        app:lottie_speed="1.8" />
 
 </FrameLayout>
