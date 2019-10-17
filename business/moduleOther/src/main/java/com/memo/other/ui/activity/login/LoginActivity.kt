@@ -4,7 +4,6 @@ import android.graphics.Color
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ActivityUtils
-import com.blankj.utilcode.util.AppUtils
 import com.flyco.tablayout.listener.OnTabSelectListener
 import com.memo.base.manager.data.DataManager
 import com.memo.base.manager.router.RouterPath
@@ -109,7 +108,7 @@ class LoginActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
     }
 
     override fun onBackPressed() {
-        AppUtils.exitApp()
+        ActivityUtils.finishAllActivities(true)
     }
 
 }
