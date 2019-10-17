@@ -56,5 +56,5 @@ interface HomeApiService {
      * 搜索文章
      */
     @POST(value = "article/query/{page}/json")
-    fun queryArticle(@Query("k") keyword: String, @Path("page") page: Int): Observable<BaseResponse<ArrayList<ArticleInfo>>>
+    fun queryArticle(@Path("page") page: Int, @Query("k") keyword: String): Observable<BaseResponse<ArticleData>>
 }

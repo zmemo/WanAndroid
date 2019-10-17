@@ -25,6 +25,6 @@ class SearchModel : IModel {
     }
 
     fun queryArticle(keyword: String, page: Int): Observable<ArrayList<ArticleInfo>> {
-        return mApiService.queryArticle(keyword, page).convert()
+        return mApiService.queryArticle(page, keyword).convert().map { it.datas }
     }
 }

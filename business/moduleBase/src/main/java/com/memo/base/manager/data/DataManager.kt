@@ -21,6 +21,7 @@ class DataManager {
     companion object {
         private const val COOKIE = "COOKIE"
         private const val USER = "USER"
+        private const val HISTORY = "HISTORY"
 
         fun get() = Holder.instance
     }
@@ -29,9 +30,7 @@ class DataManager {
      * 添加用户
      * @param user 用户信息
      */
-    fun putUser(user: User) {
-        mSaver.encode(USER, user)
-    }
+    fun putUser(user: User) = mSaver.encode(USER, user)
 
     /**
      * 获取用户
@@ -58,5 +57,20 @@ class DataManager {
      * 清除用户Cookie
      */
     fun removeCookie() = mSaver.removeValueForKey(COOKIE)
+
+    /**
+     * 存储搜索记录
+     */
+    fun putSearchHistory(histories: Set<String>) = mSaver.encode(HISTORY, histories)
+
+    /**
+     * 获取搜索记录
+     */
+    fun getSearchHistory() = mSaver.decodeStringSet(HISTORY) ?: setOf()
+
+    /**
+     * 删除搜索记录
+     */
+    fun removeSearchHistory() = mSaver.remove(HISTORY)
 
 }

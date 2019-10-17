@@ -2,7 +2,6 @@ package com.memo.mine.ui.activity.about
 
 import com.memo.base.ui.activity.BaseActivity
 import com.memo.mine.R
-import kotlinx.android.synthetic.main.activity_about.*
 
 /**
  * title:关于
@@ -20,7 +19,6 @@ class AboutActivity : BaseActivity() {
 
     /*** 进行初始化操作 ***/
     override fun initialize() {
-        mTvThanks.setText(R.string.about_thanks)
     }
 
 }

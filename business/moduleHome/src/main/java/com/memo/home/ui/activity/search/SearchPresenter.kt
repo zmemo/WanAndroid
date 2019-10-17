@@ -16,16 +16,16 @@ import com.memo.base.ui.mvp.BasePresenter
 class SearchPresenter : BasePresenter<SearchModel, SearchView>() {
     override fun buildModel(): SearchModel = SearchModel()
 
-    fun getHotKey(){
+    fun getHotKey() {
         mModel.getHotKey()
-            .execute(mView,{
+            .execute(mView, {
                 mView.getHotKeySuccess(it)
             })
     }
 
-    fun queryArticles(keyword:String,page:Int){
-        mModel.queryArticle(keyword,page)
-            .execute(mView,{
+    fun queryArticles(keyword: String, page: Int) {
+        mModel.queryArticle(keyword, page)
+            .execute(mView, {
                 mView.queryArticleSuccess(it)
             })
     }

@@ -26,6 +26,7 @@ class AppManager {
     fun exit() {
         DataManager.get().removeCookie()
         DataManager.get().removeUser()
+        DataManager.get().removeSearchHistory()
         RouterManager.get().launcherLoginActivity()
     }
 
