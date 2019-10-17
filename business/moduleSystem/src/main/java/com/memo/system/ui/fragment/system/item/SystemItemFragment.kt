@@ -6,10 +6,11 @@ import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.GridLayoutManager
 import com.memo.base.entity.remote.SystemTreeItem
 import com.memo.base.entity.remote.TYPE_SYSTEM_TITLE
+import com.memo.base.manager.router.RouterManager
 import com.memo.base.ui.fragment.BaseMvpFragment
 import com.memo.system.R
+import com.memo.system.ui.activity.SystemClassicActivity
 import com.memo.system.ui.adapter.TreeAdapter
-import com.memo.tool.helper.toast
 import kotlinx.android.synthetic.main.fragment_system_item.*
 
 /**
@@ -67,7 +68,14 @@ class SystemItemFragment : BaseMvpFragment<SystemItemView, SystemItemPresenter>(
     override fun initListener() {
         mAdapter.setOnItemClickListener { _, _, position ->
             val item = mAdapter.data[position]
-            toast(item.id)
+            when (type) {
+                TYPE_SYSTEM -> {
+                    SystemClassicActivity.start(mActivity, item.getContent(), item.id)
+                }
+                TYPE_NAVIGATION -> {
+                    RouterManager.get().startWebActivity(item.link, item.getContent())
+                }
+            }
         }
     }
 

@@ -39,11 +39,8 @@ fun toastCancel() {
 fun SmartRefreshLayout.finish(noMoreData: Boolean) {
     when (state) {
         RefreshState.Refreshing -> finishRefresh(400)
-        RefreshState.Loading -> {
-            finishLoadMore(400)
-            setEnableLoadMore(!noMoreData)
-        }
-        else -> {
-        }
+        RefreshState.Loading -> finishLoadMore(400)
+        else -> {}
     }
+    setEnableLoadMore(!noMoreData)
 }

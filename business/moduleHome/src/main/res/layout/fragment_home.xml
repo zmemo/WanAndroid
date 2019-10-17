@@ -12,58 +12,78 @@
         android:layout_height="match_parent"
         tools:context=".ui.fragment.home.HomeFragment">
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/mAppBar"
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
-                <com.google.android.material.appbar.CollapsingToolbarLayout
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/mAppBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+                    app:expanded="true">
 
-                    <com.youth.banner.Banner
-                        android:id="@+id/mBanner"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp200"
-                        app:banner_default_image="@color/color_white"
-                        app:delay_time="3500"
-                        app:image_scale_type="center_crop"
-                        app:is_auto_play="true" />
-
-                    <androidx.appcompat.widget.Toolbar
-                        android:id="@+id/mToolBar"
+                    <com.google.android.material.appbar.CollapsingToolbarLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        app:contentInsetEnd="0dp"
-                        app:contentInsetStart="0dp"
-                        app:layout_collapseMode="pin">
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-                        <com.memo.widget.titleview.TitleView
+                        <com.youth.banner.Banner
+                            android:id="@+id/mBanner"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp200"
+                            app:banner_default_image="@color/color_white"
+                            app:delay_time="3500"
+                            app:image_scale_type="center_crop"
+                            app:is_auto_play="true" />
+
+                        <androidx.appcompat.widget.Toolbar
+                            android:id="@+id/mToolBar"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:title_left_shown="false"
-                            app:title_title_text="首页" />
-                    </androidx.appcompat.widget.Toolbar>
+                            android:background="@color/white"
+                            app:contentInsetEnd="0dp"
+                            app:contentInsetStart="0dp"
+                            app:layout_collapseMode="pin">
 
-                </com.google.android.material.appbar.CollapsingToolbarLayout>
+                            <com.memo.widget.titleview.TitleView
+                                android:id="@+id/mTitleView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:title_left_shown="false"
+                                app:title_title_text="首页" />
+                        </androidx.appcompat.widget.Toolbar>
 
-            </com.google.android.material.appbar.AppBarLayout>
+                    </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mRvList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:overScrollMode="never"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                </com.google.android.material.appbar.AppBarLayout>
 
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mRvList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            <FrameLayout
+                android:id="@+id/mFlSearch"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="@dimen/dp50"
+                android:layout_gravity="right">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_search" />
+            </FrameLayout>
+
+        </FrameLayout>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 

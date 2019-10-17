@@ -24,9 +24,10 @@ data class SystemTree(
 
 data class SystemTreeItem(
     val id: Int = 0, // 494
-    private val name: String = "", // 广场
-    private val title: String = "",
-    private var multiType: Int = TYPE_SYSTEM_CONTENT
+    val name: String = "", // 广场
+    val title: String = "",
+    val link: String = "",
+    var multiType: Int = TYPE_SYSTEM_CONTENT
 ) : MultiItemEntity {
     override fun getItemType(): Int = multiType
 

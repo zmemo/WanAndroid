@@ -75,3 +75,7 @@ data class Tag(
     val name: String = "", // 问答
     val url: String = "" // /article/list/0?cid=440
 )
+
+data class HotKey(
+    val name: String = ""
+)

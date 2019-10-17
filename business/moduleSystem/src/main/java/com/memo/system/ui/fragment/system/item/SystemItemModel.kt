@@ -23,7 +23,7 @@ class SystemItemModel : IModel {
         return mApiService.getSystemTree().convert().map {
             val data = arrayListOf<SystemTreeItem>()
             it.forEach { tree ->
-                data.add(SystemTreeItem(tree.id, tree.name, multiType = TYPE_SYSTEM_TITLE))
+                data.add(SystemTreeItem(tree.id, name = tree.name, multiType = TYPE_SYSTEM_TITLE))
                 data.addAll(tree.children)
             }
             data
@@ -34,7 +34,7 @@ class SystemItemModel : IModel {
         return mApiService.getNavigationTree().convert().map {
             val data = arrayListOf<SystemTreeItem>()
             it.forEach { tree ->
-                data.add(SystemTreeItem(tree.id, tree.name, multiType = TYPE_SYSTEM_TITLE))
+                data.add(SystemTreeItem(tree.id, title = tree.name, multiType = TYPE_SYSTEM_TITLE))
                 data.addAll(tree.articles)
             }
             data

@@ -1,18 +1,25 @@
 package com.memo.home.ui.fragment.home
 
 
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.blankj.utilcode.util.BarUtils
 import com.google.android.material.appbar.AppBarLayout
 import com.memo.base.common.adapter.ArticleAdapter
 import com.memo.base.common.ui.article.ArticleActivity
 import com.memo.base.entity.remote.ArticleInfo
+import com.memo.base.entity.remote.BannerInfo
 import com.memo.base.entity.remote.HomeData
 import com.memo.base.manager.banner.BannerImageLoader
+import com.memo.base.manager.router.RouterManager
 import com.memo.base.manager.router.RouterPath
 import com.memo.base.ui.fragment.BaseMvpFragment
 import com.memo.home.R
+import com.memo.home.ui.activity.search.SearchActivity
+import com.memo.tool.ext.marginStatusBar
+import com.memo.tool.ext.onClick
+import com.memo.tool.ext.paddingStatusBar
+import com.memo.tool.ext.startActivity
 import com.memo.tool.helper.StatusBarHelper
 import com.memo.tool.helper.finish
 import com.scwang.smartrefresh.layout.api.RefreshLayout
@@ -37,7 +44,7 @@ class HomeFragment : BaseMvpFragment<HomeView, HomePresenter>(), HomeView {
     private var page = 0
 
     /*** 轮播图数据源 ***/
-    private val mImages: ArrayList<String> = arrayListOf()
+    private var mBannerInfos: ArrayList<BannerInfo> = arrayListOf()
 
     /*** 列表适配器 ***/
     private val mAdapter by lazy { ArticleAdapter() }
@@ -54,7 +61,8 @@ class HomeFragment : BaseMvpFragment<HomeView, HomePresenter>(), HomeView {
         // 状态栏字体黑暗模式
         StatusBarHelper.setStatusTextDarkMode(mActivity)
         // 设置ToolBar距顶
-        mToolBar.setPadding(0, BarUtils.getStatusBarHeight(), 0, 0)
+        mToolBar.paddingStatusBar()
+        mFlSearch.marginStatusBar()
         // 设置Banner图片加载
         mBanner.setImageLoader(BannerImageLoader()).start()
         // 配置RecyclerView
@@ -69,6 +77,21 @@ class HomeFragment : BaseMvpFragment<HomeView, HomePresenter>(), HomeView {
         mAppBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBar, offset ->
             mToolBar.alpha = abs(offset).toFloat() / appBar.totalScrollRange
         })
+        // 标题栏点击标题滑动到顶部
+        mTitleView.setOnTitleClickListener {
+            // 但顶部完全显示 滑动到顶部
+            if (mToolBar.alpha == 1f) {
+                val behavior = (mAppBar.layoutParams as CoordinatorLayout.LayoutParams).behavior
+                if (behavior is AppBarLayout.Behavior) {
+                    behavior.topAndBottomOffset = 0
+                }
+                mRvList.scrollToPosition(0)
+            }
+        }
+        // 搜索
+        mFlSearch.onClick {
+            startActivity<SearchActivity>()
+        }
         // 刷新 加载 监听
         mRefreshLayout.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
             override fun onLoadMore(refreshLayout: RefreshLayout) {
@@ -86,6 +109,11 @@ class HomeFragment : BaseMvpFragment<HomeView, HomePresenter>(), HomeView {
             val article = mAdapter.data[position]
             ArticleActivity.start(mActivity, article.id, article.title, article.link)
         }
+        //轮播图
+        mBanner.setOnBannerListener {
+            val info = mBannerInfos[it]
+            RouterManager.get().startWebActivity(info.url, info.title)
+        }
     }
 
     override fun start() {
@@ -96,11 +124,13 @@ class HomeFragment : BaseMvpFragment<HomeView, HomePresenter>(), HomeView {
         mRefreshLayout.finish(response.articles.isEmpty())
         // 轮播图
         if (response.banners.isNotEmpty()) {
-            mImages.clear()
+            mBannerInfos = response.banners
+            val imageList = arrayListOf<String>()
+            imageList.clear()
             response.banners.forEach {
-                mImages.add(it.imagePath)
+                imageList.add(it.imagePath)
             }
-            mBanner.setImages(mImages).start()
+            mBanner.setImages(imageList).start()
         }
 
         // 列表文章

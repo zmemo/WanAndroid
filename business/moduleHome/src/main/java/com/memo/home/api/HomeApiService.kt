@@ -4,10 +4,13 @@ import com.memo.base.api.BaseResponse
 import com.memo.base.entity.remote.ArticleData
 import com.memo.base.entity.remote.ArticleInfo
 import com.memo.base.entity.remote.BannerInfo
+import com.memo.base.entity.remote.HotKey
 import com.memo.base.manager.retrofit.RetrofitManager
 import io.reactivex.Observable
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  * title:
@@ -43,5 +46,15 @@ interface HomeApiService {
     @GET("article/top/json")
     fun getHomeTopArticle(): Observable<BaseResponse<ArrayList<ArticleInfo>>>
 
+    /**
+     * 搜索热词
+     */
+    @GET(value = "hotkey/json")
+    fun getHotKey(): Observable<BaseResponse<ArrayList<HotKey>>>
 
+    /**
+     * 搜索文章
+     */
+    @POST(value = "article/query/{page}/json")
+    fun queryArticle(@Query("k") keyword: String, @Path("page") page: Int): Observable<BaseResponse<ArrayList<ArticleInfo>>>
 }

@@ -33,7 +33,8 @@ dependencies {
     api DepConfig.agentWeb
     api DepConfig.smartRefreshLayout
     api DepConfig.tabLayout
-    api DepConfig.androidSwipLayout
+    api DepConfig.androidSwipeLayout
+    api DepConfig.flexBoxLayout
 
     // 工具
     api DepConfig.kotlin

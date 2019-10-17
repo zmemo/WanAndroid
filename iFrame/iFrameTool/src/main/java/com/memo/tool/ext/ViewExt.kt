@@ -336,17 +336,17 @@ fun TextView.resendVerificationCodeAfter(owner: LifecycleOwner, second: Long = 6
 }
 
 /**
- * 用一个控件填充满状态栏
- */
-fun View.fillStatusBar() {
-    layoutParams?.height = BarUtils.getStatusBarHeight()
-}
-
-/**
  * 设置距离填充状态栏
  */
 fun View.paddingStatusBar() {
     setPadding(paddingLeft, BarUtils.getStatusBarHeight(), paddingRight, paddingBottom)
+}
+
+/**
+ * 设置距离状态栏高度
+ */
+fun View.marginStatusBar() {
+    margin(topMargin = BarUtils.getStatusBarHeight())
 }
 
 

@@ -12,8 +12,8 @@ import com.memo.mine.R
 import com.memo.mine.ui.activity.about.AboutActivity
 import com.memo.mine.ui.activity.collect.CollectActivity
 import com.memo.tool.dialog.dialog.AlertDialog
+import com.memo.tool.ext.marginStatusBar
 import com.memo.tool.ext.onViewsClickListener
-import com.memo.tool.ext.paddingStatusBar
 import com.memo.tool.ext.startActivity
 import com.memo.tool.helper.AnimHelper
 import com.memo.tool.helper.ImageLoadHelper
@@ -82,7 +82,7 @@ class MineFragment : BaseMvpFragment<MineView, MinePresenter>(), MineView {
 
     override fun initView() {
         mLoadService.showSuccess()
-        mIvExit.paddingStatusBar()
+        mIvExit.marginStatusBar()
     }
 
     override fun initListener() {
