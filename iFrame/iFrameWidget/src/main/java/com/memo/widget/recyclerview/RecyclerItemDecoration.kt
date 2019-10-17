@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
  *
  * RecyclerViewDivider divider = new RecyclerViewDivider.Builder(this)
  * .setStyle(RecyclerViewDivider.Style.BETWEEN)
- * .setDrawableRes(R.drawable-xhdpi.divider)
+ * .setDrawableRes(R.drawable-xhdpi-xhdpi.divider)
  * //.setColorRes(R.color.divider_gray)
  * .setHeight(1.5f)
  * .setMarginLeft(72)
@@ -266,10 +266,10 @@ class RecyclerItemDecoration constructor(private val mBuilder: Builder) :
             private set
 
         /**
-         * Set divider drawable-xhdpi
+         * Set divider drawable-xhdpi-xhdpi
          * 设置分割线绘制Drawable
          *
-         * @param drawable Divider drawable-xhdpi
+         * @param drawable Divider drawable-xhdpi-xhdpi
          */
         fun setDrawable(drawable: Drawable): Builder {
             mDrawable = drawable
@@ -277,10 +277,10 @@ class RecyclerItemDecoration constructor(private val mBuilder: Builder) :
         }
 
         /**
-         * Set divider drawable-xhdpi resource
+         * Set divider drawable-xhdpi-xhdpi resource
          * 设置分割线绘制Drawable
          *
-         * @param drawableRes Divider drawable-xhdpi resource
+         * @param drawableRes Divider drawable-xhdpi-xhdpi resource
          */
         fun setDrawableRes(drawableRes: Int): Builder {
             mDrawable = ContextCompat.getDrawable(mContext, drawableRes)

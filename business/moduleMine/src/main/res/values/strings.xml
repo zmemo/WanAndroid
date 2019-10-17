@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">moduleMine</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_thanks">        感谢  玩Android【https://www.wanandroid.com/】 提供开放API，这是自己在闲暇时间完成的一个APP，通过一个实际项目来提高自己的能力水平，毕竟公司的项目不能任由自己胡乱改造。自己在去年的时候已经完成了一版玩Android，刚好是在自己找工作期间，零零碎碎的整理了几次，后续就不再跟进了。这一次进行完全重构，从零开始，目标是将自己新获取的一些知识点慢慢加入这个项目中，不断完善，进行不间断的更新。总之，先立一个flag。
+    </string>
+
+    <string name="about_recommend">"每天早晨7点30分，为你推荐优秀技术博文，提升从上班路上的闲暇时间开始~"</string>
 </resources>

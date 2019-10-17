@@ -45,4 +45,5 @@ interface OtherApiService {
         @Query("password") password: String,
         @Query("repassword") repassword: String
     ): Observable<BaseResponse<Any>>
+
 }

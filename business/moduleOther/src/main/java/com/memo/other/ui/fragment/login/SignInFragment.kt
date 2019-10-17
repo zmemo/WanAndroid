@@ -7,6 +7,7 @@ import com.memo.tool.ext.gone
 import com.memo.tool.ext.onClick
 import com.memo.tool.ext.value
 import com.memo.tool.ext.visible
+import com.memo.tool.helper.toast
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 
@@ -28,6 +29,14 @@ class SignInFragment : BaseFragment() {
     /*** 在视图加载完毕的时候初始化 ***/
     override fun initialize() {
         mTvSignIn.onClick {
+            if (mEtAccount.value.isEmpty()) {
+                toast("请输入账号")
+                return@onClick
+            }
+            if (mEtPwd.value.isEmpty()) {
+                toast("请输入密码")
+                return@onClick
+            }
             mProgress.visible()
             mTvSignIn.isEnabled = false
             (mActivity as LoginActivity).login(mEtAccount.value, mEtPwd.value)

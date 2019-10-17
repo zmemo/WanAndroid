@@ -8,6 +8,7 @@ import com.memo.tool.ext.gone
 import com.memo.tool.ext.onClick
 import com.memo.tool.ext.value
 import com.memo.tool.ext.visible
+import com.memo.tool.helper.toast
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 /**
@@ -27,6 +28,22 @@ class SignUpFragment : BaseFragment() {
     /*** 在视图加载完毕的时候初始化 ***/
     override fun initialize() {
         mTvSignUp.onClick {
+            if (mEtAccount.value.isEmpty()) {
+                toast("请输入账号")
+                return@onClick
+            }
+            if (mEtPwd.value.isEmpty()) {
+                toast("请输入密码")
+                return@onClick
+            }
+            if (mEtRePwd.value.isEmpty()) {
+                toast("请重新输入密码")
+                return@onClick
+            }
+            if (mEtPwd.value != mEtRePwd.value) {
+                toast("两次输入的密码不一致")
+                return@onClick
+            }
             mTvSignUp.isEnabled = false
             mProgress.visible()
             (mActivity as LoginActivity).register(mEtAccount.value, mEtPwd.value, mEtRePwd.value)

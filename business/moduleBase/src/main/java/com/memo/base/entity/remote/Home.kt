@@ -53,6 +53,7 @@ data class ArticleInfo(
     val niceDate: String = "", // 11小时前
     val niceShareDate: String = "", // 11小时前
     val origin: String = "",
+    val originId: Int = -1,
     val prefix: String = "",
     val projectLink: String = "",
     val publishTime: Long = 0, // 1571153172000

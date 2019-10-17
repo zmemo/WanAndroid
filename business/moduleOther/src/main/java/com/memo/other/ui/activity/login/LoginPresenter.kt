@@ -1,9 +1,9 @@
 package com.memo.other.ui.activity.login
 
+import com.memo.base.entity.remote.User
+import com.memo.base.manager.data.DataManager
 import com.memo.base.manager.retrofit.execute
-import com.memo.base.manager.user.UserManager
 import com.memo.base.ui.mvp.BasePresenter
-import com.memo.tool.helper.toast
 
 /**
  * title:
@@ -21,42 +21,35 @@ class LoginPresenter : BasePresenter<LoginModel, LoginView>() {
     override fun buildModel(): LoginModel = LoginModel()
 
     fun login(account: String, pwd: String) {
-        if (account.isEmpty()) {
-            toast("请输入账号")
-            return
-        }
-        if (pwd.isEmpty()) {
-            toast("请输入密码")
-            return
-        }
         mModel.login(account, pwd)
-            .doOnNext { UserManager.get().setUser(it) }
+            .doOnNext {
+                val builder: StringBuilder = StringBuilder()
+                it.collectIds.forEachIndexed { index, id ->
+                    if (index == 0) {
+                        builder.append(id)
+                    } else {
+                        builder.append(",").append(id)
+                    }
+                }
+                val user = User(
+                    builder.toString(), it.email, it.icon,
+                    it.id, it.nickname, it.username
+                )
+                DataManager.get().putUser(user)
+            }
             .execute(mView, {
                 mView.loginSuccess()
             }, {
-                mView.loginError()
+                mView.onError()
             })
     }
 
     fun register(account: String, pwd: String, rePwd: String) {
-        if (account.isEmpty()) {
-            toast("请输入账号")
-            return
-        }
-        if (pwd.isEmpty()) {
-            toast("请输入密码")
-            return
-        }
-        if (rePwd.isEmpty()) {
-            toast("请重新输入密码")
-            return
-        }
-        if (pwd != rePwd) {
-            toast("两次输入的密码不一致")
-        }
         mModel.register(account, pwd)
             .execute(mView, {
                 login(account, pwd)
+            }, {
+                mView.onError()
             })
     }
 

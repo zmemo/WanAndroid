@@ -36,6 +36,20 @@ fun <T> Observable<T>.execute(
         })
 }
 
+fun <T> Observable<T>.executeNotProcess(
+    view: IView,
+    onSuccess: (response: T) -> Unit,
+    onError: () -> Unit = {}
+) {
+    this.io2MainLifecycle(view.lifecycleOwner())
+        .subscribe({
+            onSuccess(it)
+            view.hideLoading()
+        }, {
+            onError()
+            view.hideLoading()
+        })
+}
 
 fun <T> Observable<T>.execute(
     view: IView,

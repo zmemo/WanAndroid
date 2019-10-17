@@ -29,6 +29,7 @@ class DepConfig {
     static agentWeb = "com.just.agentweb:agentweb:4.0.3-beta"
     static smartRefreshLayout = "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0"
     static tabLayout = "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar"
+    static androidSwipLayout = "com.daimajia.swipelayout:library:1.2.0@aar"
 
     // 工具
     static kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.50"

@@ -13,6 +13,7 @@ import com.memo.base.R
 import com.memo.base.config.config.Config
 import com.memo.base.manager.load.StateError
 import com.memo.base.manager.load.StateLoading
+import com.memo.tool.helper.OOMHelper
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -74,6 +75,9 @@ class InitManager {
 
     fun initInSplash() {
         if (!isInitInSplash) {
+            // 定时检查应用内存 清理图片内存
+            OOMHelper.startMonitorLowMemory()
+
             //初始化刷新框架
             SmartRefreshLayout.setDefaultRefreshInitializer { _, refreshLayout ->
                 refreshLayout

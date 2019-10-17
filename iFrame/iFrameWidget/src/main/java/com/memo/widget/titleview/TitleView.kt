@@ -266,10 +266,10 @@ class TitleView(context: Context, attrs: AttributeSet?) : FrameLayout(context, a
                         mLeftListener?.onLeftClick()
                     }
                 }
-                R.id.mTvRight -> {
+                R.id.mTvTitle -> {
                     mTitleListener?.onTitleClick()
                 }
-                R.id.mTvTitle -> {
+                R.id.mTvRight -> {
                     mRightListener?.onRightClick()
                 }
             }
@@ -368,6 +368,7 @@ class TitleView(context: Context, attrs: AttributeSet?) : FrameLayout(context, a
      * @param drawableRes Int
      */
     fun setLeftDrawable(@DrawableRes drawableRes: Int) {
+        mTvLeft.visible()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             mTvLeft.setCompoundDrawablesRelativeWithIntrinsicBounds(drawableRes, 0, 0, 0)
         } else {
@@ -385,18 +386,16 @@ class TitleView(context: Context, attrs: AttributeSet?) : FrameLayout(context, a
 
     /**
      * 设置右侧图标
-     * @param drawable Int
+     * @param drawableRes Int
      */
-    fun setRightDrawable(@DrawableRes drawable: Int) {
-        if (drawable != 0) {
-            mTvRight.visible()
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                mTvRight.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, rightDrawable, 0)
-            } else {
-                mTvRight.setCompoundDrawablesWithIntrinsicBounds(0, 0, rightDrawable, 0)
-            }
-            mTvRight.compoundDrawablePadding = rightDrawablePadding.toInt()
+    fun setRightDrawable(@DrawableRes drawableRes: Int) {
+        mTvRight.visible()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            mTvRight.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, drawableRes, 0)
+        } else {
+            mTvRight.setCompoundDrawablesWithIntrinsicBounds(0, 0, drawableRes, 0)
         }
+        mTvRight.compoundDrawablePadding = rightDrawablePadding.toInt()
     }
 
     /**

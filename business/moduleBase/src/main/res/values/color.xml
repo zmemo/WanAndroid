@@ -3,4 +3,5 @@
     <color name="color_main">#49A2FF</color>
     <color name="color_top">#FE4365</color>
     <color name="color_bg_top">#04FE4365</color>
+    <color name="color_bg_mine">#7AB3F1</color>
 </resources>

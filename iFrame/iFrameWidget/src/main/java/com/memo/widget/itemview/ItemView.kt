@@ -27,7 +27,7 @@ import com.memo.widget.R
 class ItemView(context: Context, attrs: AttributeSet? = null) : FrameLayout(context, attrs) {
 
 
-    private val minDp45 = dimen(R.dimen.dp45)
+    private val minDp50 = dimen(R.dimen.dp50)
 
     private val mTvMain: TextView by lazy { TextView(context) }
     private val mTvExtra: TextView by lazy { TextView(context) }
@@ -68,7 +68,7 @@ class ItemView(context: Context, attrs: AttributeSet? = null) : FrameLayout(cont
 
         attr.recycle()
 
-        minimumHeight = minDp45.toInt()
+        minimumHeight = minDp50.toInt()
     }
 
     private fun getParameters(attr: TypedArray) {

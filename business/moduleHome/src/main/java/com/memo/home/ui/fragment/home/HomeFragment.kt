@@ -6,10 +6,10 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.BarUtils
 import com.google.android.material.appbar.AppBarLayout
 import com.memo.base.common.adapter.ArticleAdapter
+import com.memo.base.common.ui.article.ArticleActivity
 import com.memo.base.entity.remote.ArticleInfo
 import com.memo.base.entity.remote.HomeData
 import com.memo.base.manager.banner.BannerImageLoader
-import com.memo.base.manager.router.RouterManager
 import com.memo.base.manager.router.RouterPath
 import com.memo.base.ui.fragment.BaseMvpFragment
 import com.memo.home.R
@@ -82,10 +82,9 @@ class HomeFragment : BaseMvpFragment<HomeView, HomePresenter>(), HomeView {
             }
         })
         // 列表点击监听
-        mAdapter.setOnItemChildClickListener { _, view, position ->
-            when (view.id) {
-                R.id.mClContent -> RouterManager.get().startWebActivity(mAdapter.data[position].link, mAdapter.data[position].title)
-            }
+        mAdapter.setOnItemChildClickListener { _, _, position ->
+            val article = mAdapter.data[position]
+            ArticleActivity.start(mActivity, article.id, article.title, article.link)
         }
     }
 

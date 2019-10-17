@@ -4,6 +4,7 @@ package com.memo.blog.ui.fragment.blog.item
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.memo.base.common.adapter.ArticleAdapter
+import com.memo.base.common.ui.article.ArticleActivity
 import com.memo.base.entity.remote.ArticleInfo
 import com.memo.base.ui.fragment.BaseMvpFragment
 import com.memo.blog.R
@@ -66,6 +67,12 @@ class BlogItemFragment : BaseMvpFragment<BlogItemView, BlogItemPresenter>(), Blo
                 mPresenter.getArticles(blogId, page)
             }
         })
+
+        // 列表点击监听
+        mAdapter.setOnItemChildClickListener { _, view, position ->
+            val article = mAdapter.data[position]
+            ArticleActivity.start(mActivity, article.id, article.title, article.link)
+        }
     }
 
     override fun start() {

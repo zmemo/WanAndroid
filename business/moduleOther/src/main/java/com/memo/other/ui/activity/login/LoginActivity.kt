@@ -2,10 +2,12 @@ package com.memo.other.ui.activity.login
 
 import android.graphics.Color
 import androidx.fragment.app.Fragment
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.AppUtils
 import com.flyco.tablayout.listener.OnTabSelectListener
 import com.memo.base.manager.data.DataManager
+import com.memo.base.manager.router.RouterPath
 import com.memo.base.ui.activity.BaseMvpActivity
 import com.memo.other.R
 import com.memo.other.ui.activity.main.MainActivity
@@ -25,6 +27,7 @@ import kotlinx.android.synthetic.main.activity_login.*
  *
  * Talk is cheap, Show me the code.
  */
+@Route(path = RouterPath.Other.LoginActivity)
 class LoginActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
 
     /*** Tab 标题 登陆 注册 ***/
@@ -97,7 +100,7 @@ class LoginActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
     /**
      * 登陆失败
      */
-    override fun loginError() {
+    override fun onError() {
         if (mViewPager.currentItem == 0) {
             mSignInFragment.finishLogin()
         } else {

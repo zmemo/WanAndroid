@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.about.AboutActivity">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp60"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="lottie_about.json"
+        app:lottie_loop="true" />
+
+    <com.memo.widget.titleview.TitleView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_title_text="关于" />
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp50"
+        app:srlEnableLoadMore="false"
+        app:srlEnableRefresh="false">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <com.memo.widget.textview.AlignTextView
+                android:id="@+id/mTvThanks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp20"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp80"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/dp40"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dp20"
+                android:paddingRight="@dimen/dp20"
+                android:text="@string/about_recommend"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/sp14"
+                android:textStyle="bold" />
+
+
+        </FrameLayout>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</FrameLayout>

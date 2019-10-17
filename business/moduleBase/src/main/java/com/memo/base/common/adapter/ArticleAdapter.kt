@@ -1,6 +1,7 @@
 package com.memo.base.common.adapter
 
 import android.graphics.Color
+import com.daimajia.swipe.SwipeLayout
 import com.memo.base.R
 import com.memo.base.entity.remote.ArticleInfo
 import com.memo.iframe.tools.ext.fromHtml
@@ -19,34 +20,49 @@ import com.memo.tool.helper.ImageLoadHelper
  *
  * Talk is cheap, Show me the code.
  */
-class ArticleAdapter : BaseRecyclerAdapter<ArticleInfo>(R.layout.item_article) {
-    /**
+class ArticleAdapter(val enableSwipe: Boolean = false) : BaseRecyclerAdapter<ArticleInfo>(R.layout.item_article) {
+
+    /**.setText(R.id.mTvName,
+    if (item.author.isEmpty()) {
+    "作者：匿名"
+    } else {
+    item.author
+    }}"）
+
      * 转换 数据都不为空
      */
     override fun converts(helper: ViewHolder, item: ArticleInfo) {
         val showPic = item.envelopePic.isNotEmpty()
-        helper.setText(
-            R.id.mTvName, "作者：${if (item.author.isEmpty()) {
-                "匿名"
-            } else {
-                item.author
-            }}"
-        )
+        helper
+            .setText(
+                R.id.mTvName, if (item.author.isEmpty()) {
+                    "作者：匿名"
+                } else {
+                    "作者：${item.author}"
+                }
+            )
             .setText(R.id.mTvTitle, item.title.fromHtml())
             .setText(R.id.mTvDesc, item.desc.fromHtml())
-            .setText(R.id.mTvChapter, "${item.superChapterName} · ${item.chapterName}")
+            .setText(
+                R.id.mTvChapter, if (item.superChapterName.isNotEmpty()) {
+                    "${item.superChapterName} · ${item.chapterName}"
+                } else {
+                    item.chapterName
+                }
+            )
             .setText(R.id.mTvTime, item.niceDate)
             .setGone(R.id.mIvPic, showPic)
             .setGone(R.id.mTvTop, item.isTop)
             .setBackgroundColor(
-                R.id.mItemView, if (item.isTop) {
+                R.id.mClContent, if (item.isTop) {
                     color(R.color.color_bg_top)
                 } else {
                     Color.WHITE
                 }
             )
             .addOnClickListener(R.id.mClContent)
-
+            .addOnClickListener(R.id.mFlDelete)
+        helper.getView<SwipeLayout>(R.id.mSwipeLayout).isSwipeEnabled = enableSwipe
         if (showPic) {
             ImageLoadHelper.loadImage(mContext, item.envelopePic, helper.getView(R.id.mIvPic))
         }

@@ -56,6 +56,13 @@ class RouterManager {
     //---------------------------------------- Home -------------------------------------
 
     /**
+     * 其他界面
+     */
+    fun launcherLoginActivity() {
+        ARouter.getInstance().build(RouterPath.Other.LoginActivity).navigation()
+    }
+
+    /**
      * 获取首页
      */
     fun getHomeFragment(): Fragment {

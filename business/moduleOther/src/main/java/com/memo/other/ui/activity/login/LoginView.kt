@@ -18,7 +18,7 @@ interface LoginView : IView {
     fun loginSuccess()
 
     /**
-     * 登陆失败
+     * 失败
      */
-    fun loginError()
+    fun onError()
 }

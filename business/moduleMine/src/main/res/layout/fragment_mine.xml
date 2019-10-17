@@ -1,14 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.fragment.mine.MineFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.ruffian.library.widget.RLinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="@dimen/dp300"
+        android:orientation="vertical"
+        app:background_normal="@color/color_bg_mine"
+        app:corner_radius_bottom_left="@dimen/dp100"
+        app:corner_radius_bottom_right="@dimen/dp100">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/mIvExit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_margin="@dimen/dp15"
+            android:src="@drawable/ic_exit" />
+
+        <FrameLayout
+            android:id="@+id/mFlContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp20">
+
+            <com.ruffian.library.widget.RImageView
+                android:id="@+id/mIvIconHead"
+                android:layout_width="@dimen/dp100"
+                android:layout_height="@dimen/dp100"
+                android:src="@drawable/ic_rem"
+                app:border_color="@color/color_bg_top"
+                app:border_width="@dimen/dp5"
+                app:is_circle="true" />
+
+            <com.ruffian.library.widget.RImageView
+                android:id="@+id/mIvIconTail"
+                android:layout_width="@dimen/dp100"
+                android:layout_height="@dimen/dp100"
+                android:src="@drawable/ic_002"
+                app:border_color="@color/color_bg_top"
+                app:border_width="@dimen/dp5"
+                app:is_circle="true" />
+
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/mTvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp18"
+            android:textStyle="bold"
+            tools:text="Mr.Memo" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp20"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/mTvPoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="@dimen/dp80"
+                android:drawableLeft="@drawable/ic_point"
+                android:drawablePadding="@dimen/dp10"
+                android:text="积分：?"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/mTvRank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/dp80"
+                android:drawableLeft="@drawable/ic_rank"
+                android:drawablePadding="@dimen/dp10"
+                android:text="排名：?"
+                android:textColor="@color/white" />
+
+        </FrameLayout>
+
+
+    </com.ruffian.library.widget.RLinearLayout>
+
+
+    <com.memo.widget.itemview.ItemView
+        android:id="@+id/mItemCollect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp20"
+        app:item_extra_drawable="@drawable/ic_arrow_right"
+        app:item_main_drawable="@drawable/ic_collect"
+        app:item_main_drawablePadding="@dimen/dp20"
+        app:item_main_text="收藏" />
+
+    <com.memo.widget.itemview.ItemView
+        android:id="@+id/mItemTodo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:item_extra_drawable="@drawable/ic_arrow_right"
+        app:item_main_drawable="@drawable/ic_todo"
+        app:item_main_drawablePadding="@dimen/dp20"
+        app:item_main_text="TODO" />
+
+    <com.memo.widget.itemview.ItemView
+        android:id="@+id/mItemSetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:item_extra_drawable="@drawable/ic_arrow_right"
+        app:item_main_drawable="@drawable/ic_setting"
+        app:item_main_drawablePadding="@dimen/dp20"
+        app:item_main_text="设置" />
+
+    <com.memo.widget.itemview.ItemView
+        android:id="@+id/mItemAbout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:item_extra_drawable="@drawable/ic_arrow_right"
+        app:item_main_drawable="@drawable/ic_about"
+        app:item_main_drawablePadding="@dimen/dp20"
+        app:item_main_text="关于" />
+
+</LinearLayout>

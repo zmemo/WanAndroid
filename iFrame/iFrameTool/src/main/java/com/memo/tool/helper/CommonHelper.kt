@@ -30,7 +30,6 @@ fun toastCancel() {
     ToastUtils.cancel()
 }
 
-
 // ------------------------------- SmartRefreshLayout相关 -------------------------------//
 
 /**
@@ -40,7 +39,10 @@ fun toastCancel() {
 fun SmartRefreshLayout.finish(noMoreData: Boolean) {
     when (state) {
         RefreshState.Refreshing -> finishRefresh(400)
-        RefreshState.Loading -> finishLoadMore(400, true, noMoreData)
+        RefreshState.Loading -> {
+            finishLoadMore(400)
+            setEnableLoadMore(!noMoreData)
+        }
         else -> {
         }
     }

@@ -41,7 +41,6 @@ kapt {
 
 dependencies {
     // 调试
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation DepConfig.junit
     androidTestImplementation DepConfig.testJunit
     androidTestImplementation DepConfig.testEspresso

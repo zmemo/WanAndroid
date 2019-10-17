@@ -5,6 +5,7 @@ import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.*
 import com.google.gson.JsonParseException
 import com.memo.base.config.config.Config
+import com.memo.base.manager.user.AppManager
 import com.memo.tool.dir.LocalDir
 import com.memo.tool.helper.toast
 import org.json.JSONException
@@ -32,6 +33,8 @@ object ExceptionHandler {
         saveErrorLog2Local(exception)
         when (exception) {
             is ApiException -> {
+                // 处理错误码
+                handleCode(exception.code)
                 // 服务器返回的错误
                 toast(exception.message)
             }
@@ -93,5 +96,13 @@ object ExceptionHandler {
         //信息存储
         val log = "${file.absolutePath}/${TimeUtils.getNowString()}.txt"
         FileIOUtils.writeFileFromString(log, info)
+    }
+
+    private fun handleCode(code: Int) {
+        when (code) {
+            ExceptionCode.LoginErrorCode -> {
+                AppManager.get().exit()
+            }
+        }
     }
 }
