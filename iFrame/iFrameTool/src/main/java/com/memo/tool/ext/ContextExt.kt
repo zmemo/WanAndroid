@@ -57,3 +57,4 @@ fun View.inflaterView(@LayoutRes layoutRes: Int, parent: ViewGroup? = null): Vie
 fun RecyclerView.ViewHolder.inflaterView(@LayoutRes layoutRes: Int, parent: ViewGroup? = null): View =
     View.inflate(itemView.context, layoutRes, parent)
 
+

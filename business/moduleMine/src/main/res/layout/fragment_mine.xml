@@ -15,20 +15,12 @@
         app:corner_radius_bottom_left="@dimen/dp100"
         app:corner_radius_bottom_right="@dimen/dp100">
 
-        <ImageView
-            android:id="@+id/mIvExit"
-            android:layout_width="@dimen/dp50"
-            android:layout_height="@dimen/dp50"
-            android:layout_gravity="right"
-            android:padding="@dimen/dp12"
-            android:src="@drawable/ic_exit" />
-
         <FrameLayout
             android:id="@+id/mFlContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/dp20">
+            android:layout_marginTop="@dimen/dp50">
 
             <com.ruffian.library.widget.RImageView
                 android:id="@+id/mIvIconHead"

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.todo.list.TodoActivity">
+
+    <com.memo.widget.titleview.TitleView
+        android:id="@+id/mTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_right_drawable="@drawable/ic_filter"
+        app:title_title_text="TODO" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/mRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mRvList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        <com.memo.widget.dragfloatactionbutton.DragFloatingActionButton
+            android:id="@+id/mBtnAdd"
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp50"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginRight="@dimen/dp5"
+            android:src="@drawable/ic_todo_add"
+            app:backgroundTint="@color/white"
+            app:drag_margin="@dimen/dp5"
+            app:elevation="@dimen/dp3"
+            app:fabCustomSize="@dimen/dp50" />
+
+    </FrameLayout>
+
+
+</LinearLayout>

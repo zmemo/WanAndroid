@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:clickToClose="true"
+    app:show_mode="lay_down">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/mTvUnDone"
+            android:layout_width="@dimen/dp80"
+            android:layout_height="match_parent"
+            android:background="@color/color_todo_undone"
+            android:gravity="center"
+            android:text="未完成"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp16" />
+
+        <TextView
+            android:id="@+id/mTvDone"
+            android:layout_width="@dimen/dp80"
+            android:layout_height="match_parent"
+            android:background="@color/color_todo_done"
+            android:gravity="center"
+            android:text="已完成"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp16" />
+
+
+        <TextView
+            android:id="@+id/mTvDelete"
+            android:layout_width="@dimen/dp80"
+            android:layout_height="match_parent"
+            android:background="@color/color_todo_delete"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp16" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mItemView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/dp15">
+
+        <com.memo.widget.labelview.LabelView
+            android:id="@+id/mLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:label_background_color="@color/color_label_important"
+            app:label_gravity="TOP_LEFT"
+            app:label_text="已完成"
+            app:label_text_color="@color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/mTvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:paddingLeft="@dimen/dp35"
+            android:paddingTop="@dimen/dp15"
+            android:paddingRight="@dimen/dp35"
+            android:paddingBottom="@dimen/dp15"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/sp16"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="这是标题内容" />
+
+        <TextView
+            android:id="@+id/mTvContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:paddingLeft="@dimen/dp35"
+            android:paddingRight="@dimen/dp35"
+            android:paddingBottom="@dimen/dp15"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/sp14"
+            app:layout_constraintTop_toBottomOf="@id/mTvTitle"
+            tools:text="这是内容" />
+
+
+        <TextView
+            android:id="@+id/mTvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp35"
+            android:layout_marginRight="@dimen/dp35"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/sp14"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mTvContent"
+            tools:text="2019-09-09" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.daimajia.swipe.SwipeLayout>

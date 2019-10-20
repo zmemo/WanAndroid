@@ -1,5 +1,6 @@
 package com.memo.base.manager.user
 
+import com.blankj.utilcode.util.ActivityUtils
 import com.memo.base.manager.data.DataManager
 import com.memo.base.manager.router.RouterManager
 
@@ -26,8 +27,8 @@ class AppManager {
     fun exit() {
         DataManager.get().removeCookie()
         DataManager.get().removeUser()
-        DataManager.get().removeSearchHistory()
         RouterManager.get().launcherLoginActivity()
+        ActivityUtils.finishAllActivitiesExceptNewest(true)
     }
 
 }

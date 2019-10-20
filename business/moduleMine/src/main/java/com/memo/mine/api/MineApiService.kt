@@ -3,6 +3,8 @@ package com.memo.mine.api
 import com.memo.base.api.BaseResponse
 import com.memo.base.entity.remote.ArticleData
 import com.memo.base.entity.remote.RankPoint
+import com.memo.base.entity.remote.TodoData
+import com.memo.base.entity.remote.TodoInfo
 import com.memo.base.manager.retrofit.RetrofitManager
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -49,6 +51,45 @@ interface MineApiService {
      */
     @POST(value = "lg/uncollect/{id}/json")
     fun unCollectInCollect(@Path("id") id: Int, @Query("originId") originId: Int): Observable<BaseResponse<Any>>
+
+    /**
+     * Todo列表
+     */
+    @POST(value = "lg/todo/v2/list/{page}/json")
+    fun queryTodo(@Path("page") page: Int, @Query("status") status: Int?): Observable<BaseResponse<TodoData>>
+
+    /**
+     * 添加Todo
+     * @param request AddTodoRequest
+     */
+    @POST(value = "lg/todo/add/json")
+    fun addTodo(@Query("title") title: String, @Query("content") content: String): Observable<BaseResponse<TodoInfo>>
+
+    /**
+     * 更新Todo详情
+     * @param id Todo的id
+     * @param request UpdateTodoRequest
+     */
+    @POST(value = "lg/todo/update/{id}/json")
+    fun updateTodo(
+        @Path("id") id: Int, @Query("title") title: String,
+        @Query("content") content: String, @Query("date") date: String
+    ): Observable<BaseResponse<TodoInfo>>
+
+    /**
+     * 更新Todo状态
+     * @param id Todo的id
+     * @param status 状态值
+     */
+    @POST(value = "lg/todo/done/{id}/json")
+    fun updateTodoStatus(@Path("id") id: Int, @Query("status") status: Int): Observable<BaseResponse<Any>>
+
+    /**
+     * 删除一个Todo
+     * @param id Int
+     */
+    @POST(value = "lg/todo/delete/{id}/json")
+    fun deleteTodo(@Path("id") id: Int): Observable<BaseResponse<Any>>
 
 
 }

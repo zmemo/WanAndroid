@@ -4,15 +4,15 @@ package com.memo.mine.ui.fragment.mine
 import android.annotation.SuppressLint
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.memo.base.entity.remote.RankPoint
+import com.memo.base.manager.bus.BusManager
 import com.memo.base.manager.data.DataManager
 import com.memo.base.manager.router.RouterPath
-import com.memo.base.manager.user.AppManager
 import com.memo.base.ui.fragment.BaseMvpFragment
 import com.memo.mine.R
 import com.memo.mine.ui.activity.about.AboutActivity
 import com.memo.mine.ui.activity.collect.CollectActivity
-import com.memo.tool.dialog.dialog.AlertDialog
-import com.memo.tool.ext.marginStatusBar
+import com.memo.mine.ui.activity.setting.SettingActivity
+import com.memo.mine.ui.activity.todo.list.TodoActivity
 import com.memo.tool.ext.onViewsClickListener
 import com.memo.tool.ext.startActivity
 import com.memo.tool.helper.AnimHelper
@@ -55,16 +55,6 @@ class MineFragment : BaseMvpFragment<MineView, MinePresenter>(), MineView {
         )
     }
 
-    private val mExitDialog by lazy {
-        AlertDialog(
-            mActivity,
-            message = "是否退出账号？"
-        ).setOnTipClickListener {
-            mPresenter.loginOut()
-            AppManager.get().exit()
-        }
-    }
-
     /*** 绑定Presenter 如果多个Presenter 返回建议是当前页面的Presenter ***/
     override fun buildPresenter(): MinePresenter = MinePresenter()
 
@@ -82,16 +72,11 @@ class MineFragment : BaseMvpFragment<MineView, MinePresenter>(), MineView {
 
     override fun initView() {
         mLoadService.showSuccess()
-        mIvExit.marginStatusBar()
     }
 
     override fun initListener() {
         onViewsClickListener({
             when (it.id) {
-                // 账号退出
-                R.id.mIvExit -> {
-                    mExitDialog.show()
-                }
                 // 头像点击
                 R.id.mFlContainer -> {
                     if ((toTrailAnim.hasStarted() && toTrailAnim.hasEnded().not()) ||
@@ -112,16 +97,25 @@ class MineFragment : BaseMvpFragment<MineView, MinePresenter>(), MineView {
                 }
                 // TODO清单
                 R.id.mItemTodo -> {
+                    startActivity<TodoActivity>()
                 }
                 // 设置
                 R.id.mItemSetting -> {
+                    startActivity<SettingActivity>()
                 }
                 // 关于
                 R.id.mItemAbout -> {
                     startActivity<AboutActivity>()
                 }
             }
-        }, mIvExit, mFlContainer, mItemCollect, mItemTodo, mItemSetting, mItemAbout)
+        }, mFlContainer, mItemCollect, mItemTodo, mItemSetting, mItemAbout)
+
+        // 登陆成功的通知
+        BusManager.get().subscribeLogin(this) {
+            if (it) {
+                mPresenter.getUserCoin()
+            }
+        }
     }
 
 
@@ -134,4 +128,8 @@ class MineFragment : BaseMvpFragment<MineView, MinePresenter>(), MineView {
         mTvRank.text = "排名：${response.rank}"
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        BusManager.get().unregister(this)
+    }
 }

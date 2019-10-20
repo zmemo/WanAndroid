@@ -403,9 +403,9 @@ class TitleView(context: Context, attrs: AttributeSet?) : FrameLayout(context, a
      * @param moreText String? 文字
      */
     fun setRightText(moreText: String?) {
-        moreText?.let {
+        if (!moreText.isNullOrEmpty()) {
             mTvRight.visible()
-            mTvRight.text = it
+            mTvRight.text = moreText
         }
     }
 
@@ -444,6 +444,10 @@ class TitleView(context: Context, attrs: AttributeSet?) : FrameLayout(context, a
     fun setRightDrawablePadding(padding: Int) {
         mTvRight.compoundDrawablePadding = padding
     }
+
+    fun getLeftView() = mTvLeft
+
+    fun getRightView() = mTvRight
 
     /**
      * 设置左侧点击

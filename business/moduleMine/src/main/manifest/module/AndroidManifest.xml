@@ -3,7 +3,10 @@
     package="com.memo.mine">
 
     <application>
-        <activity android:name=".ui.activity.collect.CollectActivity"></activity>
+        <activity android:name=".ui.activity.todo.detail.TodoDetailActivity" />
+        <activity android:name=".ui.activity.todo.list.TodoActivity" />
+        <activity android:name=".ui.activity.setting.SettingActivity" />
+        <activity android:name=".ui.activity.collect.CollectActivity" />
         <activity android:name=".ui.activity.about.AboutActivity" />
     </application>
 

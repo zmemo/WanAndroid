@@ -3,7 +3,7 @@ package com.memo.other.ui.activity.login
 import com.memo.base.manager.retrofit.convert
 import com.memo.base.manager.retrofit.convertAny
 import com.memo.base.ui.mvp.IModel
-import com.memo.other.mApiService
+import com.memo.other.api.mApiService
 
 /**
  * title:

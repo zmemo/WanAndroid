@@ -1,62 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	
-	<declare-styleable name="TitleView">
-		<!--背景颜色-->
-		<attr name="title_background" format="color" />
-		
-		<!--主标题-->
-		<attr name="title_title_text" format="string" />
-		<attr name="title_marquee_enable" format="boolean" />
-		<attr name="title_title_color" format="color" />
-		<attr name="title_title_size" format="dimension" />
-		<attr name="title_title_bold" format="boolean" />
-		
-		<!--副标题-->
-		<attr name="title_subtitle_text" format="string" />
-		<attr name="title_subtitle_color" format="color" />
-		<attr name="title_subtitle_size" format="dimension" />
-		<attr name="title_subtitle_bold" format="boolean" />
-		
-		<!--左侧-->
-		<attr name="title_left_text" format="string" />
-		<attr name="title_left_text_color" format="color" />
-		<attr name="title_left_text_size" format="dimension" />
-		<attr name="title_left_text_bold" format="boolean" />
-		<attr name="title_left_drawable" format="reference" />
-		<attr name="title_left_drawable_padding" format="dimension" />
-		<attr name="title_left_shown" format="boolean" />
-		
-		<!--右侧-->
-		<attr name="title_right_text" format="string" />
-		<attr name="title_right_text_color" format="color" />
-		<attr name="title_right_text_size" format="dimension" />
-		<attr name="title_right_text_bold" format="boolean" />
-		<attr name="title_right_drawable" format="reference" />
-		<attr name="title_right_drawable_padding" format="dimension" />
-		
-		<!--标题阴影-->
-		<attr name="title_shadow_shown" format="boolean" />
-	</declare-styleable>
-	
-	<declare-styleable name="ItemView">
-		<attr name="item_padding" format="dimension" />
-		<attr name="item_main_text" format="string" />
-		<attr name="item_main_textSize" format="dimension" />
-		<attr name="item_main_textColor" format="color" />
-		<attr name="item_main_textBold" format="boolean" />
-		<attr name="item_main_drawable" format="reference" />
-		<attr name="item_main_drawablePadding" format="dimension" />
-		<attr name="item_extra_text" format="string" />
-		<attr name="item_extra_textSize" format="dimension" />
-		<attr name="item_extra_textColor" format="color" />
-		<attr name="item_extra_textBold" format="boolean" />
-		<attr name="item_extra_drawable" format="reference" />
-		<attr name="item_extra_drawablePadding" format="dimension" />
-		<attr name="item_ripple_enable" format="boolean" />
-		<attr name="item_divider_shown" format="boolean" />
-		<attr name="item_divider_height" format="dimension" />
-		<attr name="item_divider_color" format="color" />
-		<attr name="item_divider_margin" format="dimension" />
-	</declare-styleable>
+
+    <declare-styleable name="TitleView">
+        <!--背景颜色-->
+        <attr name="title_background" format="color" />
+
+        <!--主标题-->
+        <attr name="title_title_text" format="string" />
+        <attr name="title_marquee_enable" format="boolean" />
+        <attr name="title_title_color" format="color" />
+        <attr name="title_title_size" format="dimension" />
+        <attr name="title_title_bold" format="boolean" />
+
+        <!--副标题-->
+        <attr name="title_subtitle_text" format="string" />
+        <attr name="title_subtitle_color" format="color" />
+        <attr name="title_subtitle_size" format="dimension" />
+        <attr name="title_subtitle_bold" format="boolean" />
+
+        <!--左侧-->
+        <attr name="title_left_text" format="string" />
+        <attr name="title_left_text_color" format="color" />
+        <attr name="title_left_text_size" format="dimension" />
+        <attr name="title_left_text_bold" format="boolean" />
+        <attr name="title_left_drawable" format="reference" />
+        <attr name="title_left_drawable_padding" format="dimension" />
+        <attr name="title_left_shown" format="boolean" />
+
+        <!--右侧-->
+        <attr name="title_right_text" format="string" />
+        <attr name="title_right_text_color" format="color" />
+        <attr name="title_right_text_size" format="dimension" />
+        <attr name="title_right_text_bold" format="boolean" />
+        <attr name="title_right_drawable" format="reference" />
+        <attr name="title_right_drawable_padding" format="dimension" />
+
+        <!--标题阴影-->
+        <attr name="title_shadow_shown" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ItemView">
+        <attr name="item_padding" format="dimension" />
+        <attr name="item_main_text" format="string" />
+        <attr name="item_main_textSize" format="dimension" />
+        <attr name="item_main_textColor" format="color" />
+        <attr name="item_main_textBold" format="boolean" />
+        <attr name="item_main_drawable" format="reference" />
+        <attr name="item_main_drawablePadding" format="dimension" />
+        <attr name="item_extra_text" format="string" />
+        <attr name="item_extra_textSize" format="dimension" />
+        <attr name="item_extra_textColor" format="color" />
+        <attr name="item_extra_textBold" format="boolean" />
+        <attr name="item_extra_drawable" format="reference" />
+        <attr name="item_extra_drawablePadding" format="dimension" />
+        <attr name="item_ripple_enable" format="boolean" />
+        <attr name="item_divider_shown" format="boolean" />
+        <attr name="item_divider_height" format="dimension" />
+        <attr name="item_divider_color" format="color" />
+        <attr name="item_divider_margin" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="DragFloatingActionButton">
+        <attr name="drag_margin" format="float" />
+        <attr name="drag_limit_top" format="dimension" />
+        <attr name="drag_enable_drag" format="boolean" />
+        <attr name="drag_enable_attach" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="LabelView">
+        <!-- 设置文字内容 -->
+        <attr name="label_text" format="string" />
+        <!-- 设置文字颜色,默认#ffffff -->
+        <attr name="label_text_color" format="color" />
+        <!-- 设置文字大小,默认11sp -->
+        <attr name="label_text_size" format="dimension" />
+        <!-- 设置文字是否支持加粗,默认true -->
+        <attr name="label_text_bold" format="boolean" />
+        <!-- 设置文字是否支持全部大写,默认true-->
+        <attr name="label_text_all_caps" format="boolean" />
+        <!-- 设置背景颜色,默认"#FF4081"-->
+        <attr name="label_background_color" format="color" />
+        <!-- 设置LabelView所在矩形最小宽高,默认mFillTriangle?35dp:50dp-->
+        <attr name="label_min_size" format="dimension" />
+        <!-- 设置文字上下padding,默认3.5dp,mFillTriangle为true时无效-->
+        <attr name="label_padding" format="dimension" />
+        <!-- 设置LabelView方向 -->
+        <attr name="label_gravity" format="enum">
+            <enum name="TOP_LEFT" value="51" />
+            <enum name="TOP_RIGHT" value="53" />
+            <enum name="BOTTOM_LEFT" value="83" />
+            <enum name="BOTTOM_RIGHT" value="85" />
+        </attr>
+        <!-- 设置是否填充三角区域,默认false -->
+        <attr name="label_fill_triangle" format="boolean" />
+
+    </declare-styleable>
 </resources>

@@ -103,7 +103,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        // 销毁软键盘
+        // 销毁软键盘内存
         KeyboardHelper.onDestroy(mContext)
         // 清除所有的图片内存占用
         OOMHelper.onDestroy(mRootView)

@@ -5,7 +5,9 @@
     <application>
         <activity android:name=".ui.activity.splash.SplashActivity" />
         <activity android:name=".ui.activity.login.LoginActivity" />
-        <activity android:name=".ui.activity.main.MainActivity" />
+        <activity
+            android:name=".ui.activity.main.MainActivity"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@ import android.graphics.Color
 import com.daimajia.swipe.SwipeLayout
 import com.memo.base.R
 import com.memo.base.entity.remote.ArticleInfo
+import com.memo.base.utils.IconHelper
 import com.memo.iframe.tools.ext.fromHtml
 import com.memo.tool.adapter.recyclerview.BaseRecyclerAdapter
 import com.memo.tool.adapter.recyclerview.ViewHolder
@@ -22,18 +23,11 @@ import com.memo.tool.helper.ImageLoadHelper
  */
 class ArticleAdapter(val enableSwipe: Boolean = false) : BaseRecyclerAdapter<ArticleInfo>(R.layout.item_article) {
 
-    /**.setText(R.id.mTvName,
-    if (item.author.isEmpty()) {
-    "作者：匿名"
-    } else {
-    item.author
-    }}"）
-
-     * 转换 数据都不为空
-     */
     override fun converts(helper: ViewHolder, item: ArticleInfo) {
+
         val showPic = item.envelopePic.isNotEmpty()
         helper
+            .setImageResource(R.id.mIvIcon, IconHelper.randomIcon(item.chapterId))
             .setText(
                 R.id.mTvName, if (item.author.isEmpty()) {
                     "作者：匿名"

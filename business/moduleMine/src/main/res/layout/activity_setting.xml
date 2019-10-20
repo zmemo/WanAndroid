@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.setting.SettingActivity">
+
+    <com.memo.widget.titleview.TitleView
+        android:id="@+id/mTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_title_text="设置" />
+
+    <com.memo.widget.itemview.ItemView
+        android:id="@+id/mItemClear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:item_extra_drawable="@drawable/ic_arrow_right"
+        app:item_main_drawable="@drawable/ic_clear_cache"
+        app:item_main_text="清理缓存" />
+
+    <com.memo.widget.itemview.ItemView
+        android:id="@+id/mItemContentFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:item_extra_drawable="@drawable/ic_arrow_right"
+        app:item_main_drawable="@drawable/ic_content_feedback"
+        app:item_main_text="内容反馈" />
+
+    <com.memo.widget.itemview.ItemView
+        android:id="@+id/mItemAppFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:item_extra_drawable="@drawable/ic_arrow_right"
+        app:item_main_drawable="@drawable/ic_app_feedback"
+        app:item_main_text="应用反馈" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/mLoginOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp18"
+        android:layout_marginRight="@dimen/dp18"
+        android:layout_marginBottom="@dimen/dp30"
+        android:gravity="center"
+        android:padding="@dimen/dp10"
+        android:text="退出登陆"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp16"
+        app:background_normal="@color/color_bg_mine"
+        app:background_pressed="@color/color_main"
+        app:corner_radius="@dimen/dp10" />
+
+</LinearLayout>

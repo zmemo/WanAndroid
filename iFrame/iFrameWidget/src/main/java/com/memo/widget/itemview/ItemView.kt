@@ -66,8 +66,6 @@ class ItemView(context: Context, attrs: AttributeSet? = null) : FrameLayout(cont
 
         buildView()
 
-        attr.recycle()
-
         minimumHeight = minDp50.toInt()
     }
 
@@ -113,6 +111,8 @@ class ItemView(context: Context, attrs: AttributeSet? = null) : FrameLayout(cont
             attr.getDimension(R.styleable.ItemView_item_divider_height, mItemDividerHeight)
         mItemDividerMargin =
             attr.getDimension(R.styleable.ItemView_item_divider_margin, mItemDividerMargin)
+
+        attr.recycle()
     }
 
     private fun buildView() {

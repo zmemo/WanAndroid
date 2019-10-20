@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.todo.detail.TodoDetailActivity">
+
+    <com.memo.widget.titleview.TitleView
+        android:id="@+id/mTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_title_text="详情"
+        tools:title_right_text="修改" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp10"
+        app:cardCornerRadius="@dimen/dp10"
+        app:cardElevation="@dimen/dp3">
+
+        <EditText
+            android:id="@+id/mEtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="top"
+            android:hint="标题"
+            android:padding="@dimen/dp10"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/sp16" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp10"
+        app:cardCornerRadius="@dimen/dp10"
+        app:cardElevation="@dimen/dp3">
+
+        <EditText
+            android:id="@+id/mEtContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="top"
+            android:hint="内容"
+            android:lines="10"
+            android:padding="@dimen/dp10"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/sp16" />
+
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/mTvSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp18"
+        android:layout_marginRight="@dimen/dp18"
+        android:layout_marginBottom="@dimen/dp30"
+        android:gravity="center"
+        android:padding="@dimen/dp10"
+        android:text="保存"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp16"
+        app:background_normal="@color/color_bg_mine"
+        app:background_pressed="@color/color_main"
+        app:corner_radius="@dimen/dp10" />
+
+</LinearLayout>

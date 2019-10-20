@@ -1,6 +1,7 @@
 package com.memo.base.utils
 
 import com.memo.base.R
+import kotlin.math.abs
 
 /**
  * title:
@@ -30,7 +31,7 @@ object IconHelper {
 
     @JvmStatic
     fun randomIcon(id: Int): Int {
-        return icons[id % 10]
+        return icons[abs(id % 10)]
     }
 }
 

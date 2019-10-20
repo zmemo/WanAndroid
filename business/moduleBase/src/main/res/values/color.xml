@@ -4,4 +4,14 @@
     <color name="color_top">#FE4365</color>
     <color name="color_bg_top">#04FE4365</color>
     <color name="color_bg_mine">#7AB3F1</color>
+
+    <color name="color_todo_undone">#8A977B</color>
+    <color name="color_todo_done">#E58308</color>
+    <color name="color_todo_update">#F4D000</color>
+    <color name="color_todo_delete">#DC5712</color>
+
+    <color name="color_label_important">#FE4365</color>
+    <color name="color_label_normal">#83AF9B</color>
+
+
 </resources>

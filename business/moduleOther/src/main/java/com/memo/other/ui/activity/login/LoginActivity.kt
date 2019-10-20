@@ -3,8 +3,10 @@ package com.memo.other.ui.activity.login
 import android.graphics.Color
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.rxbus.RxBus
 import com.blankj.utilcode.util.ActivityUtils
 import com.flyco.tablayout.listener.OnTabSelectListener
+import com.memo.base.entity.event.LoginEvent
 import com.memo.base.manager.data.DataManager
 import com.memo.base.manager.router.RouterPath
 import com.memo.base.ui.activity.BaseMvpActivity
@@ -51,9 +53,6 @@ class LoginActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
     override fun initData() {
         // 清除用户Cookie
         DataManager.get().removeCookie()
-        // 关闭其他界面
-        ActivityUtils.finishAllActivitiesExceptNewest()
-
     }
 
     override fun initView() {
@@ -92,6 +91,7 @@ class LoginActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
      * 登陆成功
      */
     override fun loginSuccess() {
+        RxBus.getDefault().post(LoginEvent())
         startActivity<MainActivity>()
         finish()
     }

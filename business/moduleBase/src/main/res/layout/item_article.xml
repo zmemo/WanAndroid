@@ -48,12 +48,22 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:background="@color/color_333333" />
 
+            <com.ruffian.library.widget.RImageView
+                android:id="@+id/mIvIcon"
+                android:layout_width="@dimen/dp18"
+                android:layout_height="@dimen/dp18"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/mIvPic"
+                tools:src="@drawable/ic_ahri" />
+
             <TextView
                 android:id="@+id/mTvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/mIvPic"
+                android:layout_marginLeft="@dimen/dp10"
+                app:layout_constraintBottom_toBottomOf="@id/mIvIcon"
+                app:layout_constraintLeft_toRightOf="@id/mIvIcon"
+                app:layout_constraintTop_toTopOf="@id/mIvIcon"
                 tools:text="作者：faith-hb" />
 
             <TextView
@@ -67,7 +77,7 @@
                 android:textColor="@color/color_333333"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/mTvDesc"
-                app:layout_constraintLeft_toLeftOf="@id/mTvName"
+                app:layout_constraintLeft_toLeftOf="@id/mIvIcon"
                 app:layout_constraintRight_toLeftOf="@id/mIvPic"
                 app:layout_constraintTop_toBottomOf="@id/mTvName"
                 tools:text="自定义控件通用库 WidgetCase" />

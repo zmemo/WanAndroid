@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".ui.fragment.system.main.SystemFragment">
 
+
     <com.flyco.tablayout.SegmentTabLayout
         android:id="@+id/mTabLayout"
         android:layout_width="@dimen/dp200"
