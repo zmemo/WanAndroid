@@ -1,9 +1,13 @@
 package com.memo.base.ui.fragment
 
 import android.app.Activity
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import com.kingja.loadsir.core.LoadService
-import com.memo.base.manager.load.LoadHelper
+import com.kingja.loadsir.core.LoadSir
 import com.memo.base.ui.mvp.IPresenter
 import com.memo.base.ui.mvp.IView
 
@@ -24,11 +28,16 @@ abstract class BaseMvpFragment<in V : IView, P : IPresenter<V>> : BaseFragment()
     /*** 绑定Presenter ***/
     protected abstract fun buildPresenter(): P
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val rootView = super.onCreateView(inflater, container, savedInstanceState)
+        mLoadService = LoadSir.getDefault().register(rootView) { onStart() }
+        return mLoadService.loadLayout
+    }
+
     override fun baseInitialize() {
         super.baseInitialize()
         mPresenter = buildPresenter()
         mPresenter.attachView(this as V)
-        mLoadService = LoadHelper.register(mRootView) { start() }
     }
 
     override fun initialize() {

@@ -37,6 +37,7 @@ class SplashActivity : BaseActivity() {
     override fun initialize() {
         // 进行初始化操作
         InitManager.get().initInSplash()
+
         // 动画监听
         mLottie.addAnimatorListener(object : SimpleAnimatorListener() {
             override fun onAnimationEnd(animation: Animator?, isReverse: Boolean) {
