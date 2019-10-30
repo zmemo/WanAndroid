@@ -59,10 +59,11 @@ class WebActivity : BaseActivity() {
         mAgentWeb = WebHelper.init(mContext, mFlContainer, url)
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        return if (mAgentWeb.handleKeyEvent(keyCode, event)) {
-            true
-        } else super.onKeyDown(keyCode, event)
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (WebHelper.onKeyDown(mAgentWeb, keyCode, event)) {
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
     override fun onPause() {

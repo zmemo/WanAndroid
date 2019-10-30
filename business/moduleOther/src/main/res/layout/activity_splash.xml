@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.memo.widget.lottieview.LottieView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/mLottie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

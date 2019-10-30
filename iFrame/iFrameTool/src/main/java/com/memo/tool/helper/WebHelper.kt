@@ -3,6 +3,7 @@ package com.memo.tool.helper
 import android.app.Activity
 import android.content.Context
 import android.os.Build
+import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.ValueCallback
@@ -47,6 +48,19 @@ object WebHelper {
 
         return agentWeb
     }
+
+
+    /**
+     * 点击返回 充血onKeyDown
+     */
+    fun onKeyDown(mAgentWeb: AgentWeb?, keyCode: Int, event: KeyEvent?): Boolean {
+        return if (mAgentWeb == null || event == null) {
+            false
+        } else {
+            mAgentWeb.handleKeyEvent(keyCode, event)
+        }
+    }
+
 
     /**
      * 生命周期 onPause

@@ -20,9 +20,9 @@ android {
     signingConfigs {
         sign {
             keyAlias 'iFrame'
-            keyPassword 'zhoumemo'
+            keyPassword "zhoumemo"
             storeFile file('iFrame.jks')
-            storePassword 'zhoumemo'
+            storePassword "zhoumemo"
         }
     }
 
