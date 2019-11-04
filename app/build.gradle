@@ -19,16 +19,16 @@ android {
 
     signingConfigs {
         sign {
-            keyAlias 'iFrame'
-            keyPassword "zhoumemo"
-            storeFile file('iFrame.jks')
-            storePassword "zhoumemo"
+            keyAlias KeyAlias
+            keyPassword KeyPassword
+            storeFile file(StoreFile)
+            storePassword StorePassword
         }
     }
 
     buildTypes {
         debug {
-            minifyEnabled true
+            minifyEnabled false
             signingConfig signingConfigs.sign
             applicationIdSuffix '.debug'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
