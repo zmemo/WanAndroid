@@ -77,7 +77,7 @@ class TodoActivity : BaseMvpActivity<TodoView, TodoPresenter>(), TodoView {
             mFilterDialog.showVertical(mTitleView.getRightView())
         }
 
-        mFilterDialog.setOnItemClickListener { position, item ->
+        mFilterDialog.setOnItemClickListener { position, _ ->
             status = if (position == 2) {
                 null
             } else {

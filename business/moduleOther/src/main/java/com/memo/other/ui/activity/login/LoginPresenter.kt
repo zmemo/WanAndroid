@@ -44,7 +44,7 @@ class LoginPresenter : BasePresenter<LoginModel, LoginView>() {
             })
     }
 
-    fun register(account: String, pwd: String, rePwd: String) {
+    fun register(account: String, pwd: String) {
         mModel.register(account, pwd)
             .execute(mView, {
                 login(account, pwd)

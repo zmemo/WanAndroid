@@ -5,7 +5,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.memo.base.entity.remote.ArticleTree
 import com.memo.base.manager.router.RouterPath
 import com.memo.base.ui.fragment.BaseMvpFragment
-import com.memo.iframe.tools.ext.fromHtml
+import com.memo.tool.ext.fromHtml
 import com.memo.project.R
 import com.memo.project.ui.fragment.project.item.ProjectItemFragment
 import com.memo.tool.adapter.BaseFragmentPagerAdapter

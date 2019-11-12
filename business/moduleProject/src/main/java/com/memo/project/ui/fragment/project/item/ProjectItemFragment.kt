@@ -71,7 +71,7 @@ class ProjectItemFragment : BaseMvpFragment<ProjectItemView, ProjectItemPresente
         })
 
         // 列表点击监听
-        mAdapter.setOnItemChildClickListener { _, view, position ->
+        mAdapter.setOnItemChildClickListener { _, _, position ->
             val article = mAdapter.data[position]
             ArticleActivity.start(mActivity, article.id, article.title, article.link)
         }

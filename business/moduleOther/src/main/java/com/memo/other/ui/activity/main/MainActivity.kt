@@ -35,7 +35,7 @@ class MainActivity : BaseActivity() {
     override fun initialize() {
         mFragmentHelper.add(mHomeFragment, mProjectFragment, mBlogFragment, mSystemFragment, mMineFragment)
             .show()
-        mBottomView.setOnItemChangeListener { menuItem, position ->
+        mBottomView.setOnItemChangeListener { _, position ->
             mFragmentHelper.show(position)
         }
     }

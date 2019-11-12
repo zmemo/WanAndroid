@@ -46,7 +46,7 @@ class SignUpFragment : BaseFragment() {
             }
             mTvSignUp.isEnabled = false
             mProgress.visible()
-            (mActivity as LoginActivity).register(mEtAccount.value, mEtPwd.value, mEtRePwd.value)
+            (mActivity as LoginActivity).register(mEtAccount.value, mEtPwd.value)
         }
     }
 

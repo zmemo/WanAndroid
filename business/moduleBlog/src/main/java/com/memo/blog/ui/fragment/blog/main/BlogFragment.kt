@@ -7,7 +7,7 @@ import com.memo.base.manager.router.RouterPath
 import com.memo.base.ui.fragment.BaseMvpFragment
 import com.memo.blog.R
 import com.memo.blog.ui.fragment.blog.item.BlogItemFragment
-import com.memo.iframe.tools.ext.fromHtml
+import com.memo.tool.ext.fromHtml
 import com.memo.tool.adapter.BaseFragmentPagerAdapter
 import com.memo.tool.ext.paddingStatusBar
 import kotlinx.android.synthetic.main.fragment_blog.*

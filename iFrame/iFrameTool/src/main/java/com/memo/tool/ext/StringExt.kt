@@ -1,4 +1,4 @@
-package com.memo.iframe.tools.ext
+package com.memo.tool.ext
 
 import android.text.Html
 import com.blankj.utilcode.util.EncryptUtils

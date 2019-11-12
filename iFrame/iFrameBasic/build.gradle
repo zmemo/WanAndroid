@@ -63,6 +63,8 @@ dependencies {
 
     // 插件
     debugApi DepConfig.leakCanaryDebug
-    debugApi DepConfig.doraemonKitDebug
-    releaseApi DepConfig.doraemonKitRelease
+    debugApi(DepConfig.doKitDebug) {
+        exclude module: 'utilcode'
+    }
+    releaseApi DepConfig.doKitRelease
 }

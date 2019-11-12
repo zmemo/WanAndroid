@@ -83,8 +83,8 @@ class LoginActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
     /**
      * 注册
      */
-    fun register(account: String, pwd: String, rePwd: String) {
-        mPresenter.register(account, pwd, rePwd)
+    fun register(account: String, pwd: String) {
+        mPresenter.register(account, pwd)
     }
 
     /**

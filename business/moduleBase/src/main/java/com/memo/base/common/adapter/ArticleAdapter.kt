@@ -5,7 +5,7 @@ import com.daimajia.swipe.SwipeLayout
 import com.memo.base.R
 import com.memo.base.entity.remote.ArticleInfo
 import com.memo.base.utils.IconHelper
-import com.memo.iframe.tools.ext.fromHtml
+import com.memo.tool.ext.fromHtml
 import com.memo.tool.adapter.recyclerview.BaseRecyclerAdapter
 import com.memo.tool.adapter.recyclerview.ViewHolder
 import com.memo.tool.ext.color

@@ -1,7 +1,7 @@
 package com.memo.widget.ninegridview
 
 import androidx.annotation.DrawableRes
-import com.memo.iframe.tools.ext.isHttpUrl
+import com.memo.tool.ext.isHttpUrl
 import com.memo.tool.adapter.recyclerview.BaseRecyclerAdapter
 import com.memo.tool.adapter.recyclerview.ViewHolder
 import com.memo.tool.helper.ImageLoadHelper
