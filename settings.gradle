@@ -12,9 +12,10 @@ include ':app',
         
         ':common:moduleUi',
 
-        ':iFrame:iFrameProguard',
         ':iFrame:iFrameWidget',
         ':iFrame:iFrameTool',
+        ':iFrame:iFrameProguard',
         ':iFrame:iFrameBasic'
+
 
 

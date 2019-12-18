@@ -34,13 +34,7 @@ class TodoDetailActivity : BaseMvpActivity<TodoDetailView, TodoDetailPresenter>(
     }
 
     private fun setEditMode(isEdit: Boolean) {
-        mTitleView.setRightText(
-            if (isEdit) {
-                ""
-            } else {
-                "修改"
-            }
-        )
+        mTitleView.setRightText(if (isEdit) "" else "修改")
         mEtTitle.isFocusable = isEdit
         mEtTitle.isFocusableInTouchMode = isEdit
         mEtContent.isFocusable = isEdit

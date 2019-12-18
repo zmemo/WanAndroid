@@ -1,7 +1,7 @@
 package com.memo.base.entity.remote
 
-import android.os.Parcel
 import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
 /**
  * title:
@@ -27,6 +27,10 @@ data class UserInfo(
     val username: String = "" // Mr.Memo
 )
 
+@Parcelize
+data class ArgCache(val arg1: String, val arg2: String) : Parcelable
+
+@Parcelize
 data class User(
     var collectIds: String = "",
     val email: String = "",
@@ -72,31 +76,4 @@ data class User(
         }
     }
 
-    constructor(source: Parcel) : this(
-        source.readString() ?: "",
-        source.readString() ?: "",
-        source.readString() ?: "",
-        source.readInt(),
-        source.readString() ?: "",
-        source.readString() ?: ""
-    )
-
-    override fun describeContents() = 0
-
-    override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
-        writeString(collectIds)
-        writeString(email)
-        writeString(icon)
-        writeInt(id)
-        writeString(nickname)
-        writeString(username)
-    }
-
-    companion object {
-        @JvmField
-        val CREATOR: Parcelable.Creator<User> = object : Parcelable.Creator<User> {
-            override fun createFromParcel(source: Parcel): User = User(source)
-            override fun newArray(size: Int): Array<User?> = arrayOfNulls(size)
-        }
-    }
 }

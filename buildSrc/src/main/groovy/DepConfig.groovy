@@ -63,7 +63,6 @@ class DepConfig {
     static lottie = "com.airbnb.android:lottie:3.1.0"
     static banner = "com.youth.banner:banner:1.4.10"
 
-
     // 插件
     static doKitRelease = "com.didichuxing.doraemonkit:doraemonkit-no-op:$doKitVersion"
     static doKitDebug = "com.didichuxing.doraemonkit:doraemonkit:$doKitVersion"

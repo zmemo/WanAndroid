@@ -11,6 +11,7 @@ import com.memo.base.manager.user.AppManager
 import com.memo.base.ui.activity.BaseMvpActivity
 import com.memo.base.ui.mvp.IView
 import com.memo.mine.R
+import com.memo.tool.dir.LocalDir
 import com.memo.tool.ext.onViewsClickListener
 import kotlinx.android.synthetic.main.activity_setting.*
 
@@ -40,7 +41,7 @@ class SettingActivity : BaseMvpActivity<IView, SettingPresenter>() {
 
     override fun initView() {
         mLoadService.showSuccess()
-        val size = FileUtils.getFileLength(mContext.cacheDir) + FileUtils.getFileLength(mContext.externalCacheDir)
+        val size = FileUtils.getDirLength(mContext.cacheDir) + FileUtils.getDirLength(mContext.externalCacheDir)
         if (size > 0) {
             val cacheSize = ConvertUtils.byte2FitMemorySize(size)
             mItemClear.setItemExtraText(cacheSize)
@@ -53,6 +54,10 @@ class SettingActivity : BaseMvpActivity<IView, SettingPresenter>() {
                 R.id.mItemClear -> {
                     CleanUtils.cleanInternalCache()
                     CleanUtils.cleanExternalCache()
+                    CleanUtils.cleanCustomDir(LocalDir.DIR_CAPTURE)
+                    CleanUtils.cleanCustomDir(LocalDir.DIR_COMPRESS)
+                    CleanUtils.cleanCustomDir(LocalDir.DIR_CROP)
+                    CleanUtils.cleanCustomDir(LocalDir.DIR_VIDEO)
                     mItemClear.setItemExtraText("")
                 }
                 R.id.mItemContentFeedback -> {

@@ -2,7 +2,6 @@ package com.memo.tool.ext
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
-import com.blankj.utilcode.util.LogUtils
 import com.uber.autodispose.AutoDispose
 import com.uber.autodispose.ObservableSubscribeProxy
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
@@ -55,7 +54,7 @@ fun <T> doInBackground(
     onSuccess: (t: T) -> Unit,
     onError: (error: Throwable) -> Unit
 ) {
-    Observable.just(doInBackground())
+    Observable.create<T> { it.onNext(doInBackground()) }
         .io2MainLifecycle(lifecycleOwner)
         .subscribe({
             onSuccess(it)
@@ -73,7 +72,12 @@ fun doInBackground(
     lifecycleOwner: LifecycleOwner,
     doInBackground: () -> Unit
 ) {
-    Observable.just(doInBackground())
-        .io2MainLifecycle(lifecycleOwner)
-        .subscribe { LogUtils.iTag("doInBackground", "后台任务执行完成") }
+    Observable.create<Unit> {
+        it.onNext(doInBackground())
+    }.io2MainLifecycle(lifecycleOwner)
+        .subscribe()
+}
+
+fun Any.toObservable() = Observable.create<Any> {
+    it.onNext(this)
 }

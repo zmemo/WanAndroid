@@ -46,12 +46,11 @@ class InitManager {
      */
     fun initInApp(app: Application) {
         if (ProcessUtils.isMainProcess() && !isInitInApp) {
+            // 哆啦A梦插件初始化
+            DoraemonKit.install(app)
 
             // 初始化AndroidUtilCode
             Utils.init(app)
-
-            // 哆啦A梦插件初始化
-            DoraemonKit.install(app)
 
             // 初始化MMKV
             MMKV.initialize(app)

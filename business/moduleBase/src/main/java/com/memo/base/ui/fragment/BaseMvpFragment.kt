@@ -30,7 +30,7 @@ abstract class BaseMvpFragment<in V : IView, P : IPresenter<V>> : BaseFragment()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = super.onCreateView(inflater, container, savedInstanceState)
-        mLoadService = LoadSir.getDefault().register(rootView) { onStart() }
+        mLoadService = LoadSir.getDefault().register(rootView) { start() }
         return mLoadService.loadLayout
     }
 

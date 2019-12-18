@@ -5,10 +5,10 @@ import com.daimajia.swipe.SwipeLayout
 import com.memo.base.R
 import com.memo.base.entity.remote.ArticleInfo
 import com.memo.base.utils.IconHelper
-import com.memo.tool.ext.fromHtml
 import com.memo.tool.adapter.recyclerview.BaseRecyclerAdapter
 import com.memo.tool.adapter.recyclerview.ViewHolder
 import com.memo.tool.ext.color
+import com.memo.tool.ext.fromHtml
 import com.memo.tool.helper.ImageLoadHelper
 
 /**
@@ -21,7 +21,7 @@ import com.memo.tool.helper.ImageLoadHelper
  *
  * Talk is cheap, Show me the code.
  */
-class ArticleAdapter(val enableSwipe: Boolean = false) : BaseRecyclerAdapter<ArticleInfo>(R.layout.item_article) {
+class ArticleAdapter(private val enableSwipe: Boolean = false) : BaseRecyclerAdapter<ArticleInfo>(R.layout.item_article) {
 
     override fun converts(helper: ViewHolder, item: ArticleInfo) {
 
@@ -37,6 +37,7 @@ class ArticleAdapter(val enableSwipe: Boolean = false) : BaseRecyclerAdapter<Art
             )
             .setText(R.id.mTvTitle, item.title.fromHtml())
             .setText(R.id.mTvDesc, item.desc.fromHtml())
+            .setGone(R.id.mTvDesc, item.desc.isNotEmpty())
             .setText(
                 R.id.mTvChapter, if (item.superChapterName.isNotEmpty()) {
                     "${item.superChapterName} · ${item.chapterName}"

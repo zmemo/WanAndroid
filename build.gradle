@@ -1,12 +1,15 @@
 apply plugin: 'com.alibaba.arouter'
 
 buildscript {
+
     repositories {
         jcenter()
         google()
         maven { url 'https://jitpack.io' }
         maven { url 'https://dl.bintray.com/cjt/maven' }
+        maven { url 'https://dl.bintray.com/umsdk/release' }
     }
+
     dependencies {
         classpath DepConfig.gradle
         classpath DepConfig.gradleKotlin
@@ -14,6 +17,7 @@ buildscript {
         classpath DepConfig.gradleArouter
         classpath DepConfig.aspectjx
     }
+
 }
 
 allprojects {
@@ -22,6 +26,7 @@ allprojects {
         google()
         maven { url 'https://jitpack.io' }
         maven { url 'https://dl.bintray.com/cjt/maven' }
+        maven { url 'https://dl.bintray.com/umsdk/release' }
     }
 }
 

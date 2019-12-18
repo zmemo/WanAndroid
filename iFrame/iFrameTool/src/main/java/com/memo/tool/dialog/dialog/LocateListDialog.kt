@@ -39,8 +39,8 @@ class LocateListDialog(context: Context, private val data: ArrayList<String> = a
     private val mRightToLeftShowAnim by lazy { createHorizontalAnimation(1f, 0f) }
     private val mLeftToRightHideAnim by lazy { createHorizontalAnimation(0f, 1f) }
 
-    private val mHalfScreenWidth by lazy { ScreenUtils.getScreenWidth() / 2 }
-    private val mHalfScreenHeight by lazy { ScreenUtils.getScreenHeight() / 2 }
+    private val mHalfScreenWidth by lazy { ScreenUtils.getAppScreenWidth() / 2 }
+    private val mHalfScreenHeight by lazy { ScreenUtils.getAppScreenHeight() / 2 }
 
 
     /**

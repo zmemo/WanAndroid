@@ -143,11 +143,7 @@ class TodoActivity : BaseMvpActivity<TodoView, TodoPresenter>(), TodoView {
     }
 
     override fun updateStatusSuccess(position: Int, done: Boolean) {
-        mAdapter.data[position].status = if (done) {
-            STATUS_TODO_DONE
-        } else {
-            STATUS_TODO_UNDONE
-        }
+        mAdapter.data[position].status = if (done) STATUS_TODO_DONE else STATUS_TODO_UNDONE
         mAdapter.notifyItemChanged(position)
     }
 

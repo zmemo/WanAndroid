@@ -1,5 +1,6 @@
 package com.memo.base.manager.data
 
+import com.memo.base.entity.remote.ArgCache
 import com.memo.base.entity.remote.User
 import com.tencent.mmkv.MMKV
 
@@ -22,9 +23,25 @@ class DataManager {
         private const val COOKIE = "COOKIE"
         private const val USER = "USER"
         private const val HISTORY = "HISTORY"
+        private const val ARG = "ARG"
 
         fun get() = Holder.instance
     }
+
+    /**
+     * 存储缓存
+     */
+    fun putArg(arg: ArgCache) = mSaver.encode(ARG, arg)
+
+    /**
+     * 获取缓存
+     */
+    fun getArg(): ArgCache? = mSaver.decodeParcelable(ARG, ArgCache::class.java)
+
+    /**
+     * 移除缓存
+     */
+    fun removeArg() = mSaver.removeValueForKey(ARG)
 
     /**
      * 添加用户

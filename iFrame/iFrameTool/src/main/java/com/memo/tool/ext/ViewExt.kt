@@ -4,12 +4,15 @@ import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.os.Build
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.EditText
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.annotation.ColorInt
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.BarUtils
@@ -242,6 +245,19 @@ fun View.toBitmap(): Bitmap {
             screenshot
         }
     }
+}
+
+/**
+ * 控件绘制监听
+ */
+inline fun View.onGlobalLayoutListener(crossinline callback: () -> Unit) = with(viewTreeObserver) {
+    addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+        @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+        override fun onGlobalLayout() {
+            callback()
+            removeOnGlobalLayoutListener(this)
+        }
+    })
 }
 
 /**

@@ -5,6 +5,7 @@ import com.memo.base.ui.activity.BaseActivity
 import com.memo.other.R
 import com.memo.tool.helper.ClickHelper
 import com.memo.tool.helper.FragmentHelper
+import com.memo.tool.helper.toastCancel
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -19,7 +20,12 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : BaseActivity() {
 
-    private val mFragmentHelper by lazy { FragmentHelper(R.id.mFlContainer, supportFragmentManager) }
+    private val mFragmentHelper by lazy {
+        FragmentHelper(
+            R.id.mFlContainer,
+            supportFragmentManager
+        )
+    }
     private val mHomeFragment by lazy { RouterManager.get().getHomeFragment() }
     private val mProjectFragment by lazy { RouterManager.get().getProjectFragment() }
     private val mBlogFragment by lazy { RouterManager.get().getBlogFragment() }
@@ -33,15 +39,24 @@ class MainActivity : BaseActivity() {
 
     /*** 进行初始化操作 ***/
     override fun initialize() {
-        mFragmentHelper.add(mHomeFragment, mProjectFragment, mBlogFragment, mSystemFragment, mMineFragment)
+        mFragmentHelper.add(
+            mHomeFragment,
+            mProjectFragment,
+            mBlogFragment,
+            mSystemFragment,
+            mMineFragment
+        )
             .show()
         mBottomView.setOnItemChangeListener { _, position ->
             mFragmentHelper.show(position)
         }
     }
 
-
     override fun onBackPressed() {
-        ClickHelper.doubleClickExit()
+        if (ClickHelper.isDoubleClickExit) {
+            toastCancel()
+            super.onBackPressed()
+        }
     }
+
 }

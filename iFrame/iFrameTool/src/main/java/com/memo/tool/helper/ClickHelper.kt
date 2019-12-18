@@ -1,7 +1,5 @@
 package com.memo.tool.helper
 
-import com.blankj.utilcode.util.ActivityUtils
-
 /**
  * title:点击工具类 防止过快点击
  * tip:
@@ -54,17 +52,27 @@ object ClickHelper {
 
 
     /**
-     * 双击退出
+     * 判断是否双击返回键进行退出
+     *
+     *  override fun onBackPressed() {
+     *      if (ClickHelper.isDoubleClickExit) {
+     *          toastCancel()
+     *          super.onBackPressed()
+     *      }
+     *  }
+     *
+     * @return true 退出引用  false 提示弹窗
      */
     @JvmStatic
-    fun doubleClickExit() {
-        val now = System.currentTimeMillis()
-        if (now - lastExitTime > 1500) {
-            toast("再次点击退出应用")
-            lastExitTime = now
-        } else {
-            toastCancel()
-            ActivityUtils.finishAllActivities(true)
+    val isDoubleClickExit: Boolean
+        get() {
+            var flag = true
+            val curClickTime = System.currentTimeMillis()
+            if (curClickTime - lastExitTime > 1500) {
+                flag = false
+                lastExitTime = curClickTime
+                toast("再次点击退出应用")
+            }
+            return flag
         }
-    }
 }

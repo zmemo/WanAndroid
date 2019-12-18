@@ -46,5 +46,5 @@ dependencies {
     androidTestImplementation DepConfig.testEspresso
 
     kapt DepConfig.arouterCompiler
-    api project(path: ':business:moduleBase')
+    implementation project(path: ':business:moduleBase')
 }
