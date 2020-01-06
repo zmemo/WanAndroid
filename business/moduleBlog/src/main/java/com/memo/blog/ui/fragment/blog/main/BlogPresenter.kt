@@ -1,5 +1,6 @@
 package com.memo.blog.ui.fragment.blog.main
 
+import com.memo.base.entity.remote.ArticleTreeZip
 import com.memo.base.manager.retrofit.execute
 import com.memo.base.ui.mvp.BasePresenter
 
@@ -20,10 +21,16 @@ class BlogPresenter : BasePresenter<BlogModel, BlogView>() {
     override fun buildModel(): BlogModel = BlogModel()
 
     fun getBlogTree(){
+        val zip = ArticleTreeZip()
         mModel.getBlogData()
+            .flatMap {
+                zip.articleTrees = it
+                mModel.getArticles(it[0].id, 1)
+            }
             .execute(mView,isFirstLoad,{
                 isFirstLoad = false
-                mView.getBlogTreeSuccess(it)
+                zip.articles = it
+                mView.getBlogTreeSuccess(zip)
             })
     }
 }

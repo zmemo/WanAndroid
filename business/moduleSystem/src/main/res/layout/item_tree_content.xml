@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mTvContent"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="@dimen/dp30"
     android:layout_margin="@dimen/dp10"
     android:gravity="center"
@@ -13,4 +13,4 @@
     android:textColor="@color/color_666666"
     app:background_normal="#11000000"
     app:corner_radius="@dimen/dp5"
-    tools:text="开发者日报"/>
+    tools:text="开发者日报" />

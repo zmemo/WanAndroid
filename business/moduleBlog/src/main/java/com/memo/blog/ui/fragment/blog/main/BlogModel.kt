@@ -1,5 +1,6 @@
 package com.memo.blog.ui.fragment.blog.main
 
+import com.memo.base.entity.remote.ArticleInfo
 import com.memo.base.entity.remote.ArticleTree
 import com.memo.base.manager.retrofit.convert
 import com.memo.base.ui.mvp.IModel
@@ -20,5 +21,9 @@ class BlogModel : IModel{
 
     fun getBlogData(): Observable<ArrayList<ArticleTree>> {
         return mApiService.getBlogTree().convert()
+    }
+
+    fun getArticles(id: Int, page: Int): Observable<ArrayList<ArticleInfo>> {
+        return mApiService.getBlogArticles(id, page).convert().map { it.datas }
     }
 }

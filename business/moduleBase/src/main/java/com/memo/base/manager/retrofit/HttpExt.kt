@@ -63,9 +63,9 @@ fun <T> Observable<T>.execute(
             view.loadService().showSuccess()
             view.hideLoading()
         }, {
+            if (isFirstLoad) view.loadService().showCallback(StateError::class.java)
             ExceptionHandler.handleException(it)
             onError()
-            if (isFirstLoad) view.loadService().showCallback(StateError::class.java)
             view.hideLoading()
         })
 }

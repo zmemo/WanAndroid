@@ -1,5 +1,8 @@
 package com.memo.base.entity.remote
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 /**
  * title:
  * describe:
@@ -37,6 +40,7 @@ data class ArticleData(
     val total: Int = 0 // 7265
 )
 
+@Parcelize
 data class ArticleInfo(
     val apkLink: String = "",
     val audit: Int = 0, // 1
@@ -69,12 +73,18 @@ data class ArticleInfo(
     val visible: Int = 0, // 1
     val zan: Int = 0, // 0
     var isTop: Boolean = false // 是否置顶
-)
+) : Parcelable
 
+@Parcelize
 data class Tag(
     val name: String = "", // 问答
     val url: String = "" // /article/list/0?cid=440
-)
+) : Parcelable
+
+class ArticleTreeZip {
+    var articleTrees: ArrayList<ArticleTree> = arrayListOf()
+    var articles: ArrayList<ArticleInfo> = arrayListOf()
+}
 
 data class HotKey(
     val name: String = ""

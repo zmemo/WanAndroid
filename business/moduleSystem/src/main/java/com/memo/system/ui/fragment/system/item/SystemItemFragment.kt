@@ -3,9 +3,8 @@ package com.memo.system.ui.fragment.system.item
 
 import androidx.annotation.IntRange
 import androidx.core.os.bundleOf
-import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.flexbox.FlexboxLayoutManager
 import com.memo.base.entity.remote.SystemTreeItem
-import com.memo.base.entity.remote.TYPE_SYSTEM_TITLE
 import com.memo.base.manager.router.RouterManager
 import com.memo.base.ui.fragment.BaseMvpFragment
 import com.memo.system.R
@@ -54,13 +53,14 @@ class SystemItemFragment : BaseMvpFragment<SystemItemView, SystemItemPresenter>(
 
     override fun initView() {
         mRvList.run {
-            layoutManager = GridLayoutManager(mActivity, 3)
-            mAdapter.setSpanSizeLookup { _, position ->
-                when (mAdapter.data[position].itemType) {
-                    TYPE_SYSTEM_TITLE -> 3
-                    else -> 1
-                }
-            }
+            //            layoutManager = GridLayoutManager(mActivity, 3)
+//            mAdapter.setSpanSizeLookup { _, position ->
+//                when (mAdapter.data[position].itemType) {
+//                    TYPE_SYSTEM_TITLE -> 3
+//                    else -> 1
+//                }
+//            }
+            layoutManager = FlexboxLayoutManager(mActivity)
             adapter = mAdapter
         }
     }

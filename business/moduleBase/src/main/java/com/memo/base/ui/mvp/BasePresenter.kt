@@ -15,7 +15,7 @@ abstract class BasePresenter<M : IModel, V : IView> : IPresenter<V> {
 
 
     /*** 判断是否是第一次加载数据 只有在请求成功之后才会进行变化***/
-    protected var isFirstLoad = true
+    var isFirstLoad = true
 
     /**
      * 绑定 View

@@ -21,3 +21,4 @@ data class ArticleTree(
     val userControlSetTop: Boolean = false, // false
     val visible: Int = 0 // 0
 )
+

@@ -34,11 +34,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <com.memo.widget.textview.AlignTextView
                 android:id="@+id/mTvThanks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.3"
                 android:padding="@dimen/dp20"
                 android:text="@string/about_thanks"
                 android:textColor="@color/color_333333"
@@ -51,6 +51,7 @@
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="@dimen/dp40"
                 android:gravity="center"
+                android:lineSpacingMultiplier="1.3"
                 android:paddingLeft="@dimen/dp20"
                 android:paddingRight="@dimen/dp20"
                 android:text="@string/about_recommend"

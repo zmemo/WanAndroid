@@ -4,6 +4,7 @@ import com.memo.base.entity.remote.ArgCache
 import com.memo.base.entity.remote.User
 import com.memo.base.manager.data.DataManager
 import com.memo.base.manager.retrofit.execute
+import com.memo.base.manager.retrofit.executeNotProcess
 import com.memo.base.ui.mvp.BasePresenter
 import com.memo.tool.helper.EncryptHelper
 
@@ -40,7 +41,7 @@ class LoginPresenter : BasePresenter<LoginModel, LoginView>() {
                 DataManager.get().putUser(user)
                 DataManager.get().putArg(ArgCache(EncryptHelper.encryptRsa(account), EncryptHelper.encryptRsa(pwd)))
             }
-            .execute(mView, {
+            .executeNotProcess(mView, {
                 mView.loginSuccess()
             }, {
                 mView.onError()

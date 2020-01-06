@@ -20,12 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : BaseActivity() {
 
-    private val mFragmentHelper by lazy {
-        FragmentHelper(
-            R.id.mFlContainer,
-            supportFragmentManager
-        )
-    }
+    private val mFragmentHelper by lazy { FragmentHelper(R.id.mFlContainer, supportFragmentManager) }
     private val mHomeFragment by lazy { RouterManager.get().getHomeFragment() }
     private val mProjectFragment by lazy { RouterManager.get().getProjectFragment() }
     private val mBlogFragment by lazy { RouterManager.get().getBlogFragment() }
@@ -45,8 +40,7 @@ class MainActivity : BaseActivity() {
             mBlogFragment,
             mSystemFragment,
             mMineFragment
-        )
-            .show()
+        ).show()
         mBottomView.setOnItemChangeListener { _, position ->
             mFragmentHelper.show(position)
         }

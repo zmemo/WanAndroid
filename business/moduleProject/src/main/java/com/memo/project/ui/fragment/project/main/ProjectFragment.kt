@@ -2,13 +2,13 @@ package com.memo.project.ui.fragment.project.main
 
 
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.memo.base.entity.remote.ArticleTree
+import com.memo.base.entity.remote.ArticleTreeZip
 import com.memo.base.manager.router.RouterPath
 import com.memo.base.ui.fragment.BaseMvpFragment
-import com.memo.tool.ext.fromHtml
 import com.memo.project.R
 import com.memo.project.ui.fragment.project.item.ProjectItemFragment
 import com.memo.tool.adapter.BaseFragmentPagerAdapter
+import com.memo.tool.ext.fromHtml
 import com.memo.tool.ext.paddingStatusBar
 import kotlinx.android.synthetic.main.fragment_project.*
 
@@ -46,17 +46,21 @@ class ProjectFragment : BaseMvpFragment<ProjectView, ProjectPresenter>(), Projec
         mPresenter.getProjectTree()
     }
 
-    override fun getProjectTreeSuccess(response: ArrayList<ArticleTree>) {
+    override fun getProjectTreeSuccess(response: ArticleTreeZip) {
         val titles = ArrayList<String>()
         val fragments = arrayListOf<ProjectItemFragment>()
-        response.forEach {
-            titles.add(it.name.fromHtml())
-            fragments.add(ProjectItemFragment.newInstance(it.id))
+        response.articleTrees.forEachIndexed { index, articleTree ->
+            titles.add(articleTree.name.fromHtml())
+            if (index == 0) {
+                fragments.add(ProjectItemFragment.newInstance(articleTree.id, response.articles))
+            } else {
+                fragments.add(ProjectItemFragment.newInstance(articleTree.id))
+            }
         }
         val arrays = titles.toTypedArray()
         mAdapter.setData(fragments, arrays)
         mViewPager.adapter = mAdapter
-        mViewPager.offscreenPageLimit = titles.size
+        mViewPager.offscreenPageLimit = 2
         mTabLayout.setViewPager(mViewPager, arrays)
     }
 }

@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mTvTitle"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp40"
-    android:gravity="center_vertical"
-    android:paddingLeft="@dimen/dp15"
-    android:textSize="@dimen/sp16"
-    tools:text="标题" />
+    android:orientation="horizontal">
+
+    <View
+        android:layout_width="@dimen/dp4"
+        android:layout_height="@dimen/dp16"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/dp15"
+        android:background="@color/color_main" />
+
+    <TextView
+        android:id="@+id/mTvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp10"
+        android:textSize="@dimen/sp16"
+        tools:text="标题" />
+
+</LinearLayout>

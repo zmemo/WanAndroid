@@ -26,7 +26,10 @@ abstract class BaseMvpActivity<in V : IView, P : IPresenter<V>> : BaseActivity()
         super.baseInit()
         mPresenter = buildPresenter()
         mPresenter.attachView(this as V)
-        mLoadService = LoadHelper.register(mRootView) { start() }
+        mLoadService = LoadHelper.register(mRootView) {
+            mLoadDialog.show()
+            start()
+        }
     }
 
     override fun initialize() {

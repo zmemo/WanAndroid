@@ -39,7 +39,7 @@ class SystemFragment : BaseFragment() {
     override fun initialize() {
         mRootView.paddingStatusBar()
         mViewPager.run {
-            offscreenPageLimit = titles.size
+            offscreenPageLimit = 2
             mAdapter.setData(fragments,titles)
             adapter = mAdapter
         }

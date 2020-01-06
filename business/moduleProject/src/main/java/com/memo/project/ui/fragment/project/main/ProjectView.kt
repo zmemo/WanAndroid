@@ -1,8 +1,7 @@
 package com.memo.project.ui.fragment.project.main
 
-import com.memo.base.entity.remote.ArticleTree
+import com.memo.base.entity.remote.ArticleTreeZip
 import com.memo.base.ui.mvp.IView
-import java.util.*
 
 /**
  * title:
@@ -15,5 +14,5 @@ import java.util.*
  * Talk is cheap, Show me the code.
  */
 interface ProjectView : IView {
-    fun getProjectTreeSuccess(response: ArrayList<ArticleTree>)
+    fun getProjectTreeSuccess(response: ArticleTreeZip)
 }

@@ -19,8 +19,8 @@ class ProjectItemPresenter : BasePresenter<ProjectItemModel, ProjectItemView>() 
      */
     override fun buildModel(): ProjectItemModel = ProjectItemModel()
 
-    fun getArticles(cid: Int, page: Int) {
-        mModel.getArticles(cid, page)
+    fun getArticles(projectId: Int, page: Int) {
+        mModel.getArticles(projectId, page)
             .execute(mView, isFirstLoad, {
                 isFirstLoad = false
                 mView.getArticlesSuccess(it)

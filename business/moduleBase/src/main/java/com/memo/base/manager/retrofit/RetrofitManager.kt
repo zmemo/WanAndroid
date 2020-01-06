@@ -31,15 +31,16 @@ class RetrofitManager private constructor() {
     }
 
     init {
-
         val mOkHttpClient = RetrofitUrlManager.getInstance()
             .with(OkHttpClient.Builder())
             .addInterceptor(HttpLogInterceptor(Config.isOpenLog, "HTTP"))
             .addInterceptor(CookieInterceptor())
-            .readTimeout(10, TimeUnit.SECONDS)
-            .connectTimeout(10, TimeUnit.SECONDS)
-            .writeTimeout(10, TimeUnit.SECONDS)
+            .readTimeout(10L, TimeUnit.SECONDS)
+            .connectTimeout(10L, TimeUnit.SECONDS)
+            .writeTimeout(10L, TimeUnit.SECONDS)
             .build()
+
+
 
         mRetrofit = Retrofit.Builder()
             .baseUrl(Constant.Api.BASE_URL)

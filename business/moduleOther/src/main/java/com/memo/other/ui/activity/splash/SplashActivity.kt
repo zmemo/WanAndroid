@@ -32,6 +32,7 @@ class SplashActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
 
     private var isAnimationFinish = false
     private var isPermissionFinish = false
+    private var isLoginSuccess = false
     private val mLock by lazy { ReentrantLock() }
 
     /*** 绑定布局id ***/
@@ -79,7 +80,7 @@ class SplashActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
                 val user = DataManager.get().getUser()
                 // 缓存
                 val arg = DataManager.get().getArg()
-                if (cookie.isEmpty() || user == null || arg == null) {
+                if (!isLoginSuccess || cookie.isEmpty() || user == null || arg == null) {
                     startActivity<LoginActivity>()
                 } else {
                     startActivity<MainActivity>()
@@ -104,6 +105,7 @@ class SplashActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
      * 登陆成功
      */
     override fun loginSuccess() {
+        isLoginSuccess = true
         launcher()
     }
 
@@ -111,6 +113,7 @@ class SplashActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
      * 失败
      */
     override fun onError() {
+        isLoginSuccess = false
         launcher()
     }
 

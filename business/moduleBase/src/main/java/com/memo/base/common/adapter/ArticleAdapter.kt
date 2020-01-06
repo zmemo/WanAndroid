@@ -45,7 +45,7 @@ class ArticleAdapter(private val enableSwipe: Boolean = false) : BaseRecyclerAda
                     item.chapterName
                 }
             )
-            .setText(R.id.mTvTime, item.niceDate)
+            .setText(R.id.mTvTime, item.niceShareDate)
             .setGone(R.id.mIvPic, showPic)
             .setGone(R.id.mTvTop, item.isTop)
             .setBackgroundColor(

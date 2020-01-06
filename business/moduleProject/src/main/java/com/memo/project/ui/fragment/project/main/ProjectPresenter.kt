@@ -1,5 +1,6 @@
 package com.memo.project.ui.fragment.project.main
 
+import com.memo.base.entity.remote.ArticleTreeZip
 import com.memo.base.manager.retrofit.execute
 import com.memo.base.ui.mvp.BasePresenter
 
@@ -20,11 +21,18 @@ class ProjectPresenter : BasePresenter<ProjectModel, ProjectView>() {
     override fun buildModel(): ProjectModel = ProjectModel()
 
     fun getProjectTree() {
+        val zip = ArticleTreeZip()
         mModel.getProjectTree()
+            .flatMap {
+                zip.articleTrees = it
+                mModel.getArticles(it[0].id, 1)
+            }
             .execute(mView, isFirstLoad, {
                 isFirstLoad = false
-                mView.getProjectTreeSuccess(it)
+                zip.articles = it
+                mView.getProjectTreeSuccess(zip)
             })
     }
+
 
 }

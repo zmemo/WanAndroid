@@ -1,18 +1,18 @@
 package com.memo.blog.ui.fragment.blog.item
 
 
-import androidx.core.os.bundleOf
+import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.memo.base.common.adapter.ArticleAdapter
 import com.memo.base.common.ui.article.ArticleActivity
 import com.memo.base.entity.remote.ArticleInfo
 import com.memo.base.ui.fragment.BaseMvpFragment
 import com.memo.blog.R
+import com.memo.tool.ext.withArguments
 import com.memo.tool.helper.finish
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import kotlinx.android.synthetic.main.fragment_blog_item.*
-import java.util.*
 
 /**
  * title：不同博客的文章列表界面
@@ -26,17 +26,21 @@ import java.util.*
  */
 class BlogItemFragment : BaseMvpFragment<BlogItemView, BlogItemPresenter>(), BlogItemView {
 
+    private var mData = arrayListOf<ArticleInfo>()
+
     private var blogId = 0
 
-    private var page = 0
+    private var page = 1
 
     private val mAdapter by lazy { ArticleAdapter() }
 
     companion object {
         fun newInstance(id: Int): BlogItemFragment {
-            val fragment = BlogItemFragment()
-            fragment.arguments = bundleOf("id" to id)
-            return fragment
+            return BlogItemFragment().withArguments("id" to id)
+        }
+
+        fun newInstance(id: Int, data: ArrayList<ArticleInfo>): BlogItemFragment {
+            return BlogItemFragment().withArguments("id" to id, "data" to data)
         }
     }
 
@@ -46,6 +50,7 @@ class BlogItemFragment : BaseMvpFragment<BlogItemView, BlogItemPresenter>(), Blo
 
     override fun initData() {
         blogId = arguments?.getInt("id", blogId) ?: blogId
+        mData = arguments?.getParcelableArrayList<ArticleInfo>("data") ?: arrayListOf()
     }
 
     override fun initView() {
@@ -76,7 +81,14 @@ class BlogItemFragment : BaseMvpFragment<BlogItemView, BlogItemPresenter>(), Blo
     }
 
     override fun start() {
-        mPresenter.getArticles(blogId, page)
+        if (mData.isNotEmpty()) {
+            mAdapter.setNewData(mData)
+            mPresenter.isFirstLoad = false
+            mLoadDialog.dismiss()
+            mLoadService.showSuccess()
+        } else {
+            mPresenter.getArticles(blogId, page)
+        }
     }
 
     override fun getArticleSuccess(response: ArrayList<ArticleInfo>) {
@@ -91,6 +103,24 @@ class BlogItemFragment : BaseMvpFragment<BlogItemView, BlogItemPresenter>(), Blo
     override fun getArticleFailure() {
         mRefreshLayout.finish(false)
         if (page > 0) page--
+    }
+
+    /**
+     * 恢复fragment的状态 判断是否显示数据
+     */
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        if (savedInstanceState?.getBoolean("isRestored") == true) {
+            mLoadService.showSuccess()
+        }
+    }
+
+    /**
+     * 保存Fragment的状态 判断是否加载过数据了
+     */
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("isRestored", mAdapter.data.isNotEmpty())
     }
 
 }

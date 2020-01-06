@@ -36,9 +36,9 @@ class SearchActivity : BaseMvpActivity<SearchView, SearchPresenter>(), SearchVie
 
     private val mHistoryAdapter by lazy { FlexAdapter() }
 
-    private lateinit var mSets: Set<String>
-
     private val mHistories by lazy { arrayListOf<String>() }
+
+    private var mSets: Set<String> = emptySet()
 
     private var page = 0
 
@@ -51,6 +51,9 @@ class SearchActivity : BaseMvpActivity<SearchView, SearchPresenter>(), SearchVie
     override fun initData() {
         mSets = DataManager.get().getSearchHistory()
         LogUtils.iTag("history", mSets.size)
+        if (mSets.isNotEmpty()) {
+            visible(mTvHistory, mRvHistory)
+        }
         mSets.forEach { mHistories.add(it) }
     }
 
@@ -78,7 +81,7 @@ class SearchActivity : BaseMvpActivity<SearchView, SearchPresenter>(), SearchVie
         mTitleView.setOnRightClickListener {
             mEtSearch.setText("")
             mllSearch.visible()
-            mllResult.gone()
+            mLlResult.gone()
         }
         // 清空历史记录
         mTvHistory.onClick {
@@ -86,6 +89,7 @@ class SearchActivity : BaseMvpActivity<SearchView, SearchPresenter>(), SearchVie
             mSets = setOf()
             mHistoryAdapter.setNewData(mHistories)
             DataManager.get().removeSearchHistory()
+            gone(mTvHistory, mRvHistory)
         }
         // 点击软键盘的搜索
         mEtSearch.setOnEditorActionListener { _, actionId, _ ->
@@ -96,6 +100,7 @@ class SearchActivity : BaseMvpActivity<SearchView, SearchPresenter>(), SearchVie
                     mSets = mSets.plus(keyword)
                     mHistoryAdapter.addData(keyword)
                     DataManager.get().putSearchHistory(mSets)
+                    visible(mTvHistory, mRvHistory)
                 }
                 showLoading("正在搜索")
                 page = 0
@@ -112,6 +117,7 @@ class SearchActivity : BaseMvpActivity<SearchView, SearchPresenter>(), SearchVie
                 mSets = mSets.plus(keyword)
                 mHistoryAdapter.addData(keyword)
                 DataManager.get().putSearchHistory(mSets)
+                visible(mTvHistory, mRvHistory)
             }
             showLoading("正在搜索")
             page = 0
@@ -151,12 +157,13 @@ class SearchActivity : BaseMvpActivity<SearchView, SearchPresenter>(), SearchVie
     }
 
     override fun getHotKeySuccess(response: ArrayList<String>) {
+        visible(mTvHot, mRvHot)
         mHotAdapter.setNewData(response)
     }
 
     override fun queryArticleSuccess(response: ArrayList<ArticleInfo>) {
         mllSearch.gone()
-        mllResult.visible()
+        mLlResult.visible()
         mRefreshLayout.finish(response.isEmpty())
         if (page == 0) {
             mAdapter.setNewData(response)
@@ -166,9 +173,9 @@ class SearchActivity : BaseMvpActivity<SearchView, SearchPresenter>(), SearchVie
     }
 
     override fun onBackPressed() {
-        if (mllSearch.isGone && mllResult.isVisible) {
+        if (mllSearch.isGone && mLlResult.isVisible) {
             mllSearch.visible()
-            mllResult.gone()
+            mLlResult.gone()
         } else {
             super.onBackPressed()
         }
