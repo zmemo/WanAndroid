@@ -1,7 +1,6 @@
 package com.memo.project.ui.fragment.project.item
 
 
-import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.memo.base.common.adapter.ArticleAdapter
 import com.memo.base.common.ui.article.ArticleActivity
@@ -105,24 +104,6 @@ class ProjectItemFragment : BaseMvpFragment<ProjectItemView, ProjectItemPresente
     override fun getArticlesFailure() {
         mRefreshLayout.finish(false)
         if (page > 0) page--
-    }
-
-    /**
-     * 恢复fragment的状态 判断是否显示数据
-     */
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        if (savedInstanceState?.getBoolean("isRestored") == true) {
-            mLoadService.showSuccess()
-        }
-    }
-
-    /**
-     * 保存Fragment的状态 判断是否加载过数据了
-     */
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putBoolean("isRestored", mAdapter.data.isNotEmpty())
     }
 
 }

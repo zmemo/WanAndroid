@@ -39,8 +39,6 @@ class LoginActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
 
     private val mFragments: ArrayList<Fragment> = arrayListOf(mSignInFragment, mSignUpFragment)
 
-    private val mAdapter: BaseFragmentPagerAdapter<Fragment> = BaseFragmentPagerAdapter(supportFragmentManager)
-
     override fun statusBarColor(): Int = Color.parseColor("#9FD2F7")
 
     /*** 绑定Presenter 如果多个Presenter 返回建议是当前页面的Presenter ***/
@@ -58,7 +56,11 @@ class LoginActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
     override fun initView() {
         mLoadService.showSuccess()
         mTabLayout.setTabData(mTitles)
-        mAdapter.setData(mFragments)
+        val mAdapter = BaseFragmentPagerAdapter(supportFragmentManager) {
+            if (it == 0) mSignInFragment else mSignUpFragment
+
+        }
+        mAdapter.setData(2)
         mViewPager.adapter = mAdapter
     }
 

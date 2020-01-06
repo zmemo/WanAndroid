@@ -1,5 +1,7 @@
 package com.memo.base.manager.load
 
+import android.content.Context
+import android.view.View
 import com.kingja.loadsir.callback.Callback
 import com.memo.base.R
 
@@ -15,4 +17,6 @@ import com.memo.base.R
  */
 class StateLoading :Callback(){
     override fun onCreateView(): Int  = R.layout.layout_state_loading
+
+    override fun onReloadEvent(context: Context?, view: View?): Boolean = true
 }

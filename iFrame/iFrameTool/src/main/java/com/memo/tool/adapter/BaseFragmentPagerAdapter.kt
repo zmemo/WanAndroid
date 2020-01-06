@@ -17,27 +17,28 @@ import androidx.fragment.app.FragmentStatePagerAdapter
  * Talk is cheap, Show me the code.
  */
 @SuppressLint("WrongConstant")
-class BaseFragmentPagerAdapter<T : Fragment>(fm: FragmentManager) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-    protected var mData: List<T>? = null
-    private var withTabLayoutTitles: Array<String>? = null
+class BaseFragmentPagerAdapter<T : Fragment>(fm: FragmentManager, val getItemFragment: (Int) -> T) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-    fun setData(list: List<T>) {
-        this.mData = list
+    private var withTabLayoutTitles: Array<String>? = null
+    private var size = 0
+
+    fun setData(size: Int) {
+        this.size = size
         this.notifyDataSetChanged()
     }
 
-    fun setData(list: List<T>, withTabLayoutTitles: Array<String>?) {
-        this.mData = list
+    fun setData(size: Int, withTabLayoutTitles: Array<String>) {
+        this.size = size
         this.withTabLayoutTitles = withTabLayoutTitles
         this.notifyDataSetChanged()
     }
 
     override fun getItem(position: Int): Fragment {
-        return mData!![position]
+        return getItemFragment(position)
     }
 
     override fun getCount(): Int {
-        return if (mData != null) mData!!.size else 0
+        return size
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

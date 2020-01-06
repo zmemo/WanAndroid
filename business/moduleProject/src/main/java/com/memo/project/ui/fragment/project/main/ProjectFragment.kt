@@ -8,7 +8,6 @@ import com.memo.base.ui.fragment.BaseMvpFragment
 import com.memo.project.R
 import com.memo.project.ui.fragment.project.item.ProjectItemFragment
 import com.memo.tool.adapter.BaseFragmentPagerAdapter
-import com.memo.tool.ext.fromHtml
 import com.memo.tool.ext.paddingStatusBar
 import kotlinx.android.synthetic.main.fragment_project.*
 
@@ -25,7 +24,6 @@ import kotlinx.android.synthetic.main.fragment_project.*
 @Route(path = RouterPath.Project.ProjectFragment)
 class ProjectFragment : BaseMvpFragment<ProjectView, ProjectPresenter>(), ProjectView {
 
-    private val mAdapter by lazy { BaseFragmentPagerAdapter<ProjectItemFragment>(childFragmentManager) }
 
     /*** 绑定Presenter ***/
     override fun buildPresenter(): ProjectPresenter = ProjectPresenter()
@@ -47,20 +45,14 @@ class ProjectFragment : BaseMvpFragment<ProjectView, ProjectPresenter>(), Projec
     }
 
     override fun getProjectTreeSuccess(response: ArticleTreeZip) {
-        val titles = ArrayList<String>()
-        val fragments = arrayListOf<ProjectItemFragment>()
-        response.articleTrees.forEachIndexed { index, articleTree ->
-            titles.add(articleTree.name.fromHtml())
-            if (index == 0) {
-                fragments.add(ProjectItemFragment.newInstance(articleTree.id, response.articles))
-            } else {
-                fragments.add(ProjectItemFragment.newInstance(articleTree.id))
-            }
+        val array = response.articleTrees.map { it.name }.toTypedArray()
+        mViewPager.offscreenPageLimit = 1
+        val mAdapter = BaseFragmentPagerAdapter(childFragmentManager) {
+            if (it == 0) ProjectItemFragment.newInstance(response.articleTrees[it].id, response.articles)
+            else ProjectItemFragment.newInstance(response.articleTrees[it].id)
         }
-        val arrays = titles.toTypedArray()
-        mAdapter.setData(fragments, arrays)
+        mAdapter.setData(response.articleTrees.size, array)
         mViewPager.adapter = mAdapter
-        mViewPager.offscreenPageLimit = 2
-        mTabLayout.setViewPager(mViewPager, arrays)
+        mTabLayout.setViewPager(mViewPager, array)
     }
 }

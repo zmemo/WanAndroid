@@ -8,7 +8,6 @@ import com.memo.base.ui.fragment.BaseMvpFragment
 import com.memo.blog.R
 import com.memo.blog.ui.fragment.blog.item.BlogItemFragment
 import com.memo.tool.adapter.BaseFragmentPagerAdapter
-import com.memo.tool.ext.fromHtml
 import com.memo.tool.ext.paddingStatusBar
 import kotlinx.android.synthetic.main.fragment_blog.*
 
@@ -24,8 +23,6 @@ import kotlinx.android.synthetic.main.fragment_blog.*
  */
 @Route(path = RouterPath.Blog.BlogFragment)
 class BlogFragment : BaseMvpFragment<BlogView, BlogPresenter>(), BlogView {
-
-    private val mAdapter by lazy { BaseFragmentPagerAdapter<BlogItemFragment>(childFragmentManager) }
 
     /*** 绑定Presenter ***/
     override fun buildPresenter(): BlogPresenter = BlogPresenter()
@@ -46,19 +43,16 @@ class BlogFragment : BaseMvpFragment<BlogView, BlogPresenter>(), BlogView {
     }
 
     override fun getBlogTreeSuccess(response: ArticleTreeZip) {
-        val titles = arrayListOf<String>()
-        val fragments = arrayListOf<BlogItemFragment>()
-        response.articleTrees.forEachIndexed { index, articleTree ->
-            titles.add(articleTree.name.fromHtml())
-            if (index == 0) {
-                fragments.add(BlogItemFragment.newInstance(articleTree.id, response.articles))
+        val array = response.articleTrees.map { it.name }.toTypedArray()
+        mViewPager.offscreenPageLimit = 1
+        val mAdapter = BaseFragmentPagerAdapter(childFragmentManager) {
+            if (it == 0) {
+                BlogItemFragment.newInstance(response.articleTrees[it].id, response.articles)
             } else {
-                fragments.add(BlogItemFragment.newInstance(articleTree.id))
+                BlogItemFragment.newInstance(response.articleTrees[it].id)
             }
         }
-        val array = titles.toTypedArray()
-        mAdapter.setData(fragments, array)
-        mViewPager.offscreenPageLimit = 2
+        mAdapter.setData(response.articleTrees.size, array)
         mViewPager.adapter = mAdapter
         mTabLayout.setViewPager(mViewPager, array)
 

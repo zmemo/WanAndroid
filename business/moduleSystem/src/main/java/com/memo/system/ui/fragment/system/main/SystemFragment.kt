@@ -1,6 +1,5 @@
 package com.memo.system.ui.fragment.system.main
 
-import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.flyco.tablayout.listener.OnTabSelectListener
@@ -26,32 +25,31 @@ import kotlinx.android.synthetic.main.fragment_system.*
 class SystemFragment : BaseFragment() {
 
     private val titles = arrayOf("体系", "导航")
-    private val fragments by lazy {
-        arrayListOf(
-            SystemItemFragment.newInstance(SystemItemFragment.TYPE_SYSTEM),
-            SystemItemFragment.newInstance(SystemItemFragment.TYPE_NAVIGATION)
-        )
-    }
-    private val mAdapter by lazy { BaseFragmentPagerAdapter<Fragment>(childFragmentManager) }
+
+    private val mSystemFragment = SystemItemFragment.newInstance(SystemItemFragment.TYPE_SYSTEM)
+    private val mNavigationFragment = SystemItemFragment.newInstance(SystemItemFragment.TYPE_NAVIGATION)
+
 
     override fun bindLayoutResId(): Int = R.layout.fragment_system
 
     override fun initialize() {
         mRootView.paddingStatusBar()
         mViewPager.run {
-            offscreenPageLimit = 2
-            mAdapter.setData(fragments,titles)
+            val mAdapter = BaseFragmentPagerAdapter(childFragmentManager) {
+                if (it == 0) mSystemFragment else mNavigationFragment
+            }
+            mAdapter.setData(2, titles)
             adapter = mAdapter
         }
 
         mTabLayout.setTabData(titles)
-        mTabLayout.setOnTabSelectListener(object :OnTabSelectListener{
+        mTabLayout.setOnTabSelectListener(object : OnTabSelectListener {
             override fun onTabReselect(position: Int) {}
             override fun onTabSelect(position: Int) {
                 mViewPager.currentItem = position
             }
         })
-        mViewPager.addOnPageChangeListener(object :ViewPager.SimpleOnPageChangeListener(){
+        mViewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
                 mTabLayout.currentTab = position
             }
