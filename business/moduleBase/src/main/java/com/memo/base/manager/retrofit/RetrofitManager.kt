@@ -40,8 +40,6 @@ class RetrofitManager private constructor() {
             .writeTimeout(10L, TimeUnit.SECONDS)
             .build()
 
-
-
         mRetrofit = Retrofit.Builder()
             .baseUrl(Constant.Api.BASE_URL)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

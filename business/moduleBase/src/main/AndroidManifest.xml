@@ -3,7 +3,6 @@
     package="com.memo.base">
 
     <application>
-        <activity android:name=".ui.activity.BaseTestActivity"></activity>
         <activity android:name=".common.ui.article.ArticleActivity" />
     </application>
 

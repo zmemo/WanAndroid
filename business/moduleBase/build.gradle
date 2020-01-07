@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+
 android {
     compileSdkVersion Config.compileSdkVersion
     defaultConfig {
@@ -13,7 +14,6 @@ android {
 }
 
 dependencies {
-
     api project(path: ':iFrame:iFrameTool')
     api project(path: ':iFrame:iFrameWidget')
 }

@@ -1,11 +1,11 @@
 class DepConfig {
 
-    static gradleVersion = "3.5.2"
-    static kotlinVersion = "1.3.50"
-    static retrofitVersion = "2.6.0"
-    static glideVersion = "4.10.0"
-    static autoDisposeVersion = "1.4.0"
-    static doKitVersion = "2.0.0"
+    private static gradleVersion = "3.5.2"
+    private static kotlinVersion = "1.3.50"
+    private static retrofitVersion = "2.6.0"
+    private static glideVersion = "4.10.0"
+    private static autoDisposeVersion = "1.4.0"
+    private static doKitVersion = "2.0.0"
 
     // Gradle
     static gradle = "com.android.tools.build:gradle:$gradleVersion"

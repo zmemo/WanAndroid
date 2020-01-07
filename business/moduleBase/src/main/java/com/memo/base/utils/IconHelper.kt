@@ -26,8 +26,7 @@ object IconHelper {
         R.drawable.ic_luxanna,
         R.drawable.ic_sona,
         R.drawable.ic_teemo,
-        R.drawable.ic_tristana
-    )
+        R.drawable.ic_tristana)
 
     @JvmStatic
     fun randomIcon(id: Int): Int {
